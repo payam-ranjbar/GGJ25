@@ -58,18 +58,21 @@ public class AudioManager : MonoBehaviour
 
         public void PlayBreathSound(PlayerAudioController playerAudio)
         {
+
+                var source = playerAudio.AudioSource;
                 var max = Math.Abs(breathCountToGasp - RandomUtils.GetRandomIntInRange(0, 2));
                 
                 var maxBreathReached = playerAudio.IsReachedMax(max);
 
                 if (maxBreathReached)
                 {
-                        PlayGasp();
+                        var gaspLength = PlayGasp(source);
+                        PlayBlow(source, gaspLength);
                         playerAudio.ResetBreathCount();
                 }
                 else
                 {
-                        PlayBlow();
+                        PlayBlow(source);
                         playerAudio.Breathe();
                 }
 
@@ -80,24 +83,77 @@ public class AudioManager : MonoBehaviour
                 PlayRandomSFX("thrust");
                 
         }
-        private void PlayGasp()
+        private float PlayGasp(AudioSource source)
         {
-                PlayRandomSFX("gasp");
+              var clip =  PlayRandomSFX("gasp");
+              return clip.length;
         }
 
-        private void PlayBlow()
+        private void PlayBlow(AudioSource source, float gaspLength = 0f, bool force = false)
         {
-                PlayRandomSFX("blow");
+                if(source.isPlaying && !force) return;
+                source.clip = soundDB.GetRandomClipFromSound("blow");
+                
+                source.PlayDelayed(gaspLength);
+                PlayDelayedSFX("blow", gaspLength);
         }
 
-        
 
-        private void PlayRandomSFX(string soundName)
+        private void PlayDelayedSFX(string soundName, float delay)
+        {
+                var clip = soundDB.GetRandomClipFromSound(soundName);
+                sfxSource.clip = clip;
+                sfxSource.PlayDelayed(delay);
+        }
+
+        private AudioClip PlayRandomSFX(string soundName)
         {
                 var clip = soundDB.GetRandomClipFromSound(soundName);
                 sfxSource.PlayOneShot(clip);
+                return clip;
         }
         
-        
-        
+        private void OnGUI()
+        { 
+                
+                PlayerAudioController player1Audio, player2Audio;
+                GUILayout.BeginVertical();
+
+
+                        if (GUILayout.Button("Play Blow Sound for Player 1"))
+                        {
+                                        player1Audio = GameObject.Find("Player1 Audio").GetComponent<PlayerAudioController>();
+
+                                if (player1Audio == null)
+                                { 
+                                        GUILayout.Label("Player 1 Audio not found or missing PlayerAudioController component.");
+                                        return;
+                                }
+
+                                PlayBreathSound(player1Audio);
+                        }
+
+                
+
+                        if (GUILayout.Button("Play Blow Sound for Player 2"))
+                        {
+                       
+                                        player2Audio = GameObject.Find("Player2 Audio")
+                                                .GetComponent<PlayerAudioController>();
+                                
+
+                                if (player2Audio == null)
+                                { 
+                                        GUILayout.Label("Player 1 Audio not found or missing PlayerAudioController component.");
+                                        return;
+                                }
+
+                                PlayBreathSound(player2Audio);
+                        }
+
+                GUILayout.EndVertical();
+        }
 }
+        
+        
+        
