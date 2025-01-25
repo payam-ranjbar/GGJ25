@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -62,6 +56,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void FixedUpdate()
@@ -71,7 +66,10 @@ public class PlayerController : MonoBehaviour
             rb.drag = airDrag;
             rb.AddForce(Vector3.down * gravity);
         }
-        rb.drag = groundDrag;
+        else
+        {
+            rb.drag = groundDrag;
+        }
         moveDirection *= Time.fixedDeltaTime;
         rb.AddForce(new Vector3(moveDirection.x, 0, moveDirection.y), ForceMode.Impulse);
     }
