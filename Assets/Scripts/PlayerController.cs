@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     private float currentBubbleFullness = 0;
     private float currentLungFullness;
     private bool isGrounded;
-    private bool isBlowing = false;
 
     private void OnEnable()
     {
@@ -105,7 +104,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.performed)
         {
-            isBlowing = true;
             rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
             currentBubbleFullness += blowRate;
             currentLungFullness -= blowRate;
@@ -124,7 +122,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (context.canceled)
         {
-            isBlowing = false;
         }
     }
 }
