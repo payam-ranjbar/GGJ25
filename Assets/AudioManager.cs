@@ -58,7 +58,9 @@ public class AudioManager : MonoBehaviour
 
         public void PlayBreathSound(PlayerAudioController playerAudio)
         {
-                var maxBreathReached = playerAudio.IsReachedMax(breathCountToGasp);
+                var max = Math.Abs(breathCountToGasp - RandomUtils.GetRandomIntInRange(0, 2));
+                
+                var maxBreathReached = playerAudio.IsReachedMax(max);
 
                 if (maxBreathReached)
                 {
