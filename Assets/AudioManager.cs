@@ -73,6 +73,11 @@ public class AudioManager : MonoBehaviour
 
         }
 
+        public void PlayThrust()
+        {
+                PlayRandomSFX("thrust");
+                
+        }
         private void PlayGasp()
         {
                 PlayRandomSFX("gasp");
@@ -83,6 +88,7 @@ public class AudioManager : MonoBehaviour
                 PlayRandomSFX("blow");
         }
 
+        
 
         private void PlayRandomSFX(string soundName)
         {
