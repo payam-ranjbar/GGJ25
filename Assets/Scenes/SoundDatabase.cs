@@ -8,6 +8,12 @@ namespace Scenes
         [SerializeField] private AudioClip defaultClip;
         [SerializeField] private Sound[] sounds;
 
+        [SerializeField] private AudioClip[] bgmList;
+
+
+
+        public AudioClip[] BgmList => bgmList;
+        
         public AudioClip GetRandomClipFromSound(string soundName)
         {
             var sound = Find(soundName);

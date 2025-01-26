@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Scenes;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -43,18 +44,23 @@ public class Sound
         private int GetRandomIndex()
         {
                 if (Length == 1) return 0;
-                return RandomUtils.GetRandomIntInRange(0, clips.Length - 1);
+                return RandomUtils.GetRandomIntInRange(0, clips.Length);
         }
 }
 public class AudioManager : MonoBehaviour
 {
         [SerializeField] private AudioSource mainSource;
+        [SerializeField] private AudioSource ambientSource;
+        [SerializeField] private AudioSource narratorSource;
         [SerializeField] private AudioSource sfxSource;
         [SerializeField] private SoundDatabase soundDB;
 
+        [SerializeField] private float delayBetweenClips = 3f;
         [SerializeField] private int breathCountToGasp = 4;
 
         public static AudioManager Instance { get; private set; }
+
+        public bool startMusicAwake = true;
 
         private void Awake()
         {
@@ -69,6 +75,18 @@ public class AudioManager : MonoBehaviour
 
         }
 
+        private void Start()
+        {
+                PlayAmbient();
+                // PlayBGMSequentially();
+        }
+
+        public void PlayAmbient()
+        {
+                ambientSource.loop = false;
+                ambientSource.clip = soundDB.GetRandomClipFromSound("ambient");
+                ambientSource.Play();
+        }
         public void PlayBreathSound(PlayerAudioController playerAudio)
         {
 
@@ -79,8 +97,8 @@ public class AudioManager : MonoBehaviour
 
                 if (maxBreathReached)
                 {
-                        var gaspLength = PlayGasp(source);
-                        PlayBlow(source, gaspLength);
+                        PlayGasp(source);
+                        PlayBlow(source);
                         playerAudio.ResetBreathCount();
                 }
                 else
@@ -91,24 +109,32 @@ public class AudioManager : MonoBehaviour
 
         }
 
+        public void PlayNarratorBirds() => PlayNarrator("narrator birds");
+        public void PlayNarratorStorm() => PlayNarrator("narrator storm");
+        public void PlayNarratorThunder() => PlayNarrator("narrator thunder");
         public void PlayThrust()
         {
                 PlayRandomSFX("thrust");
                 
         }
-        private float PlayGasp(AudioSource source)
+        private void PlayGasp(AudioSource source , bool force = false)
         {
-              var clip =  PlayRandomSFX("gasp");
-              return clip.length;
+
+
+                if(source.isPlaying && !force) return;
+                var clip = soundDB.GetRandomClipFromSound("gasp");
+                source.clip = clip;
+                source.Play();
+                
         }
 
-        private void PlayBlow(AudioSource source, float gaspLength = 0f, bool force = false)
+        private void PlayBlow(AudioSource source, bool force = false)
         {
                 if(source.isPlaying && !force) return;
                 source.clip = soundDB.GetRandomClipFromSound("blow");
                 
-                source.PlayDelayed(gaspLength);
-                PlayDelayedSFX("blow", gaspLength);
+                source.Play();
+                
         }
 
 
@@ -116,7 +142,7 @@ public class AudioManager : MonoBehaviour
         {
                 var clip = soundDB.GetRandomClipFromSound(soundName);
                 sfxSource.clip = clip;
-                sfxSource.PlayDelayed(delay);
+                sfxSource.Play();
         }
 
         private AudioClip PlayRandomSFX(string soundName)
@@ -124,6 +150,16 @@ public class AudioManager : MonoBehaviour
                 var clip = soundDB.GetRandomClipFromSound(soundName);
                 sfxSource.PlayOneShot(clip);
                 return clip;
+        }
+
+        private void PlayNarrator(string soundName)
+        {
+                var clip = soundDB.GetRandomClipFromSound(soundName);
+                if(narratorSource.isPlaying) return;
+
+                narratorSource.clip = clip;
+                narratorSource.Play();
+
         }
         
         private void OnGUI()
@@ -164,8 +200,55 @@ public class AudioManager : MonoBehaviour
                                 PlayBreathSound(player2Audio);
                         }
 
+                        if (GUILayout.Button("Play BGM"))
+                        {
+                                PlayBGMSequentially();
+                        }
+                        if (GUILayout.Button("Play Birds Narrator"))
+                        {
+                                PlayNarratorBirds();
+                        }
+                        if (GUILayout.Button("Play Thunder Narrator"))
+                        {
+                                PlayNarratorThunder();
+                        }
+                        if (GUILayout.Button("Play Storm Narrator"))
+                        {
+                                PlayNarratorStorm();
+                        }
+
                 GUILayout.EndVertical();
         }
+        
+        public void PlayBGMSequentially()
+        {
+                if (soundDB.BgmList.Length == 0)
+                {
+                        Debug.LogWarning("AudioManager: No BGM clips provided to play sequentially.");
+                        return;
+                }
+
+                StartCoroutine(PlayBGMCoroutine());
+        }
+
+        private IEnumerator PlayBGMCoroutine()
+        {
+                foreach (AudioClip clip in soundDB.BgmList)
+                {
+                        if (clip == null)
+                        {
+                                Debug.LogWarning("AudioManager: Encountered a null clip in BGM array, skipping.");
+                                continue;
+                        }
+
+                        mainSource.clip = clip;
+                        mainSource.Play();
+                        yield return new WaitForSeconds(clip.length + delayBetweenClips);
+                }
+
+                yield return PlayBGMCoroutine();
+        }
+
 }
         
         

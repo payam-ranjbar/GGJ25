@@ -30,6 +30,37 @@ MonoBehaviour:
   - name: thrust
     clips:
     - {fileID: 8300000, guid: 8239ee20d3fa3454e81dfda03efb7e11, type: 3}
+  - name: ui whoosh
+    clips: []
   - name: ui click
     clips:
     - {fileID: 8300000, guid: 3472e42ddb75fdd459ace407f85b6f3c, type: 3}
+  - name: whoosh
+    clips:
+    - {fileID: 8300000, guid: 3472e42ddb75fdd459ace407f85b6f3c, type: 3}
+  - name: ambient
+    clips:
+    - {fileID: 8300000, guid: 91afc9bf88589e14ab7c2629cee59c30, type: 3}
+  - name: narrator birds
+    clips:
+    - {fileID: 8300000, guid: 9afa83a29424fd64b80c2bd82f3b6e54, type: 3}
+    - {fileID: 8300000, guid: 7fa2b620e06360948a1135423e9a9121, type: 3}
+    - {fileID: 8300000, guid: 50799eba793dc37439c65e96732cd767, type: 3}
+    - {fileID: 8300000, guid: 7d555ff8c03c39a4c97384a01a276ab8, type: 3}
+  - name: narrator thunder
+    clips:
+    - {fileID: 8300000, guid: 0fa5385b29d712f40bc1be87521cb2b1, type: 3}
+    - {fileID: 8300000, guid: ebbaa6a9b43290543b521912f4e874c3, type: 3}
+    - {fileID: 8300000, guid: 0fa5385b29d712f40bc1be87521cb2b1, type: 3}
+    - {fileID: 8300000, guid: 56c41cd6c2b07044487f1ef2179bdaa4, type: 3}
+  - name: narrator storm
+    clips:
+    - {fileID: 8300000, guid: e3ecc4ed451c37345893d7824af66ef6, type: 3}
+    - {fileID: 8300000, guid: 3a1cd94732ca7ad4e9a1bab9ee39e832, type: 3}
+    - {fileID: 8300000, guid: 1b606fbff36bbac419551dcd65ca0760, type: 3}
+    - {fileID: 8300000, guid: 6c680870cf95d204590e8c58e8264ba9, type: 3}
+  bgmList:
+  - {fileID: 8300000, guid: c8ab431e137d301479160ac7f31227d6, type: 3}
+  - {fileID: 8300000, guid: 5bccdbfcb5b9ee04ba84c5e01804c1b0, type: 3}
+  - {fileID: 8300000, guid: 0671bb23f1f85994b92993988ca04bb2, type: 3}
+  - {fileID: 8300000, guid: e29f757a5adb0e84bb71394ce12ed48f, type: 3}
