@@ -10,8 +10,12 @@ public class BirdController : MonoBehaviour
             // Play animation of the balloon popping (explode object?)
             Debug.Log("The bird hit a player");
             var controller = collider.GetComponentInParent<PlayerController>();
-            controller.recentlyHit = true;
+            if (!controller.isGrounded)
+            {
+                controller.recentlyHit = true;
+            }
             controller.bubble.Pop();
+            controller.invincible = true;
         }
     }
 }

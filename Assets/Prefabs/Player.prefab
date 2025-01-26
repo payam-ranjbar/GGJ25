@@ -63,9 +63,12 @@ MonoBehaviour:
   airDrag: 0.2
   rb: {fileID: 4726224904562325935}
   bubble: {fileID: 3088725604127510256}
+  invincibilityTime: 1.5
+  invincible: 0
   moveDirection: {x: 0, y: 0}
   blow: 0
   isGrounded: 0
+  recentlyHit: 0
 --- !u!114 &4003853077433206104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +378,6 @@ MonoBehaviour:
   maxSize: 10
   groundLoopDuration: 2
   player: {fileID: 1479495264403465465}
-  iniScale: {x: 0, y: 0, z: 0}
-  poped: 0
   iniScale: {x: 0, y: 0, z: 0}
   popped: 0
 --- !u!1 &3993798855038710152
@@ -691,10 +692,6 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
       propertyPath: m_IsActive
