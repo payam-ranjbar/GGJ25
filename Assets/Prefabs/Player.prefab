@@ -63,6 +63,10 @@ MonoBehaviour:
   airDrag: 0.2
   rb: {fileID: 4726224904562325935}
   bubble: {fileID: 3088725604127510256}
+  hats:
+  - {fileID: 2754986185818286868}
+  - {fileID: 551795995533075452}
+  - {fileID: 5972452817870565155}
   invincibilityTime: 1.5
   invincible: 0
   moveDirection: {x: 0, y: 0}
@@ -544,6 +548,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -6942294909175551690, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
   m_PrefabInstance: {fileID: 2125932050367568544}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &551795995533075452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1884910819825531228, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
+  m_PrefabInstance: {fileID: 2125932050367568544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1243479748702365681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
@@ -573,6 +582,16 @@ Animator:
 --- !u!4 &1876429373682990411 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
+  m_PrefabInstance: {fileID: 2125932050367568544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2754986185818286868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4919198833863790156, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
+  m_PrefabInstance: {fileID: 2125932050367568544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5972452817870565155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5720338841461749123, guid: 0773107db23f8194eb9749a6c13fe6ce, type: 3}
   m_PrefabInstance: {fileID: 2125932050367568544}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4586383411323820881

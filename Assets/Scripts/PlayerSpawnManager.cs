@@ -7,9 +7,12 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private float _gameDelayStart = 3.0f;
     [SerializeField] private Lava _lava = null;
 
+    public GameObject birdHazard;
+
     private int _index = 0;
     private int _playerCount = 0;
     private bool _gameStarted = false;
+    private bool _gameEnded = false;
 
     private void OnValidate()
     {
@@ -19,7 +22,8 @@ public class PlayerSpawnManager : MonoBehaviour
         }
     }
 
-    public void OnPlayerJoined(PlayerInput player) {
+    public void OnPlayerJoined(PlayerInput player)
+    {
         var rigidbody = player.GetComponentInChildren<Rigidbody>();
         var interpolation = rigidbody.interpolation;
         rigidbody.position = _spawnPoints[_index].position;
@@ -33,7 +37,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
         ++_playerCount;
         _index = (_index + 1) % _spawnPoints.Length;
-        
+
         if (_playerCount >= 2 && _gameStarted == false)
         {
             _gameStarted = true;
@@ -48,9 +52,25 @@ public class PlayerSpawnManager : MonoBehaviour
         _lava.Activate();
     }
 
+
+
     public void OnPlayerDeath(int index)
     {
+        if (_gameEnded == true)
+        {
+            return;
+        }
+        _gameEnded = true;
         Debug.Log($"Player died {index}");
+        PlayerEventHandler.Instance.TriggerDeath();
+        if (index == 1)
+        {
+            GameManager.Instance.PlayerOneWin();
+        }
+        else
+        {
+            GameManager.Instance.PlayerTwoWin();
+        }
     }
 
 }
