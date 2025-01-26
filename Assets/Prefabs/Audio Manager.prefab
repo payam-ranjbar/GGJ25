@@ -310,12 +310,22 @@ MonoBehaviour:
   mainSource: {fileID: 2227624807940602575}
   ambientSource: {fileID: 7274033709223192254}
   narratorSource: {fileID: 6035442923122951169}
-  sfxSource: {fileID: 7762433776759701790}
+  sfxSources:
+  - {fileID: 7762433776759701790}
   uiSource: {fileID: 3286312937251360381}
   soundDB: {fileID: 11400000, guid: 3c3734f1464291d4da6b11ff2e14c595, type: 2}
   delayBetweenClips: 3
   breathCountToGasp: 5
   startMusicAwake: 1
+  audioMixer: {fileID: 24100000, guid: e819808dd0771ce43b5fcc56918f3708, type: 2}
+  musicGroup: Music
+  maxVolume: 0
+  minVolume: -80
+  fadeInDuration: 2
+  fadeOutDuration: 2
+  sfxMixerGroup: {fileID: 3016236327774072348, guid: e819808dd0771ce43b5fcc56918f3708, type: 2}
+  playerOneAudio: {fileID: 568763447899553231}
+  playerTwoAudio: {fileID: 4895925892156913038}
 --- !u!1 &6299711188723773072
 GameObject:
   m_ObjectHideFlags: 0

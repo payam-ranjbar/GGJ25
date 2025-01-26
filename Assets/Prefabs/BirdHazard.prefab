@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1849812752733983306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.9, y: 0, z: 19.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,20 +47,25 @@ MonoBehaviour:
   numBirds: 20
   minSpeed: 10
   maxSpeed: 30
-  xBounds:
-  - 28
-  - 28
-  yBounds:
-  - 0
-  - 5
-  zBounds:
-  - 0
-  - 30
-  normal: {x: -1, y: 0, z: 0}
   deletionTime: 10
   timeFromNotificationToBirds: 2
   startEvent: 0
-  birdReference: {fileID: 6019744765490161326}
+  xBounds:
+  - 28
+  - -13
+  yBounds:
+  - 0
+  - 5
+  zPlane: 0
+  normal: {x: 0, y: 0, z: 1}
+  center: {x: 0, y: 0}
+  width: 0
+  height: 0
+  minWidth: 1
+  maxWidth: 5
+  minHeight: 1
+  maxHeight: 5
+  birdReference: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
 --- !u!1 &3409288487450725518
 GameObject:
   m_ObjectHideFlags: 0
@@ -87,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 3409288487450725518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24, y: 0, z: 22.4}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,20 +113,25 @@ MonoBehaviour:
   numBirds: 20
   minSpeed: 10
   maxSpeed: 30
-  xBounds:
-  - -24
-  - -24
-  yBounds:
-  - 0
-  - 5
-  zBounds:
-  - 0
-  - 40
-  normal: {x: 1, y: 0, z: 0}
   deletionTime: 10
   timeFromNotificationToBirds: 2
   startEvent: 0
-  birdReference: {fileID: 6019744765490161326}
+  xBounds:
+  - -18
+  - 15
+  yBounds:
+  - 0
+  - 15
+  zPlane: 28
+  normal: {x: 0, y: 0, z: -1}
+  center: {x: 0, y: 0}
+  width: 0
+  height: 0
+  minWidth: 1
+  maxWidth: 5
+  minHeight: 1
+  maxHeight: 5
+  birdReference: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
 --- !u!1 &7992787810910255991
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +162,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5598379095833433410}
   - {fileID: 4020556412221457257}
   - {fileID: 3218902199002605109}
   m_Father: {fileID: 0}
@@ -172,71 +181,8 @@ MonoBehaviour:
   spawners:
   - {fileID: 8454810217944546477}
   - {fileID: 2125051870594761357}
-  spawnBirds: 0
---- !u!1001 &5222634415019906822
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5461605839251959059}
-    m_Modifications:
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-      propertyPath: m_Name
-      value: Bird
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
---- !u!4 &5598379095833433410 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 417698369207665220, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-  m_PrefabInstance: {fileID: 5222634415019906822}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6019744765490161326 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
-  m_PrefabInstance: {fileID: 5222634415019906822}
-  m_PrefabAsset: {fileID: 0}
+  minSpeed: 10
+  maxSpeed: 20
+  minWaveTime: 5
+  maxWaveTime: 8
+  started: 0

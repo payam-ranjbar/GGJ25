@@ -75,6 +75,8 @@ public class PlayerBubble : MonoBehaviour
         {
             if (player.blow == true)
             {
+                
+                AudioManager.Instance.PlayBreathSound(playerIndex);
                 animCooldown = 0.25f;
                 player.blow = false;
                 //AudioManager.Instance.PlayBreathSound();
@@ -113,11 +115,15 @@ public class PlayerBubble : MonoBehaviour
         targetScale = iniScale;
         transform.localScale = Vector3.zero;
         particles[player.index].Play();
+        AudioManager.Instance.PlayPop();
+        PlayerEventHandler.Instance.TriggerBubblePop();
     }
 
+    private int playerIndex;
     public void SetMaterial(int index)
     {
         this.index = index;
+        playerIndex = index;
         meshRenderer.material = materials[index];
     }
 }
