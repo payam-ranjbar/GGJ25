@@ -354,8 +354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 0.005
-  inflateRateT0: 1
-  inflateRateT1: 0.4
+  inflateRateT0: 0.2
+  inflateRateT1: 0.1
   _curve:
     serializedVersion: 2
     m_Curve:
