@@ -1,6 +1,9 @@
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
@@ -52,39 +55,44 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded)
         {
             rb.drag = airDrag;
-            rb.AddForce(Vector3.down * gravity);
         }
         else
         {
             rb.drag = groundDrag;
         }
-        var force = new Vector3(moveDirection.x, 0, moveDirection.y);
-        if (!isGrounded)
+
         {
-            force *= airMoveSpeed;
+            var force = new Vector3(moveDirection.x, 0, moveDirection.y);
+            if (force.sqrMagnitude > 0.0f)
+            {
+                if (!isGrounded)
+                {
+                    force *= airMoveSpeed;
+                }
+                else
+                {
+                    force *= groundMoveSpeed;
+                }
+                rb.AddForce(force);
+            }
+        }
+
+        if (bubble.popped == false)
+        {
+            var heightT = (bubble.balloonScale - 1) / (bubble.maxSize - 1);
+            var targetY = Mathf.Lerp(0.0f, 15.0f, heightT) + 1;
+            var heightDiff = (targetY - rb.position.y);
+
+            var velocity = rb.velocity;
+            var mag = Mathf.Abs(heightDiff);
+            var dir = heightDiff > 0 ? 1.0f : -1.0f;
+            velocity.y = (Mathf.Min(mag, gravity)) * dir;
+            rb.velocity = velocity;
         }
         else
         {
-            force *= groundMoveSpeed;
+            rb.AddForce(Vector3.down * gravity);
         }
-        rb.AddForce(force);
-
-        if (blow == true && bubble.popped == false)
-        {
-            rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
-            blow = false;
-            //velocity.y += riseRate * dt;
-        }
-        //if (isGrounded == false)
-        //{
-        //    velocity.y -= gravity * dt;
-        //}
-        //rb.velocity = velocity;
-        //var t = (bubble.balloonScale - 1) / (bubble.maxSize - 1);
-        //var targetY = Mathf.Lerp(0.0f, 5.0f, t);
-        //var velocity = rb.velocity;
-        //velocity.y = (targetY - rb.position.y) / dt;
-        //rb.velocity = velocity;
     }
 
     void OnCollisionEnter(Collision collision)
