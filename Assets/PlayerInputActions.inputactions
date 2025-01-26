@@ -9,19 +9,19 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "b0bd0a26-1dad-4225-b4da-1c116cde4f15",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
                     "name": "Blow",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "ccdb0ed5-d22e-4bdf-872f-adb033a48d45",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [

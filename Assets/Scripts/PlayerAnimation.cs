@@ -7,6 +7,7 @@ public class PlayerAniamtion : MonoBehaviour
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Transform _visuals;
     [SerializeField] private float _rotationSpeed;
+    [SerializeField] private PlayerController _playerController;
 
     private bool _isGrounded = false;
 
@@ -25,6 +26,11 @@ public class PlayerAniamtion : MonoBehaviour
         if (_visuals == null)
         {
             _visuals = _rigidbody.transform.GetChild(0);
+        }
+
+        if (_playerController == null)
+        {
+            _playerController = GetComponentInChildren<PlayerController>();
         }
     }
 
@@ -61,15 +67,18 @@ public class PlayerAniamtion : MonoBehaviour
 
         _animator.SetFloat("speed", hSpeed);
 
-        if (hSpeed > 1e-3f)
+        if (Mathf.Abs(_playerController.moveDirection.x) > 1e-3f)
         {
-            var velDir = hSpeed > 0 ? hVel / hSpeed : Vector3.zero;
-            var dot = Vector3.Dot(velDir, _visuals.forward);
+            var moveDir = _playerController.moveDirection;
+            var dot = Vector3.Dot(moveDir, _visuals.forward);
             var newLookDir = -Vector3.forward;
             if (dot > -0.25f)
             {
-                newLookDir = velDir;
+                newLookDir = moveDir;
             }
+            newLookDir.y = 0.0f;
+            newLookDir = newLookDir.normalized;
+
             _visuals.rotation = Quaternion.RotateTowards(
                 _visuals.rotation, 
                 Quaternion.LookRotation(newLookDir), 
