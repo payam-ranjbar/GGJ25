@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     public bool recentlyHit = false;
     private float invincibilityTimer = 0;
 
+    public int index = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,7 +136,7 @@ public class PlayerController : MonoBehaviour
             {
                 controller.recentlyHit = true;
             }
-            bubble.Pop();
+            controller.bubble.Pop();
             invincible = true;
         }
     }
@@ -172,5 +174,11 @@ public class PlayerController : MonoBehaviour
         {
             blow = false;
         }
+    }
+
+    public void SetIndex(int index)
+    {
+        this.index = index;
+        bubble.SetMaterial(index);
     }
 }
