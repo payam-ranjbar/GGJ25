@@ -28,10 +28,10 @@ public class PlayerStatusWidget : MonoBehaviour
         
         Deflate();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Inflate();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Inflate();
+        //}
         LerpColor();
     }
 
