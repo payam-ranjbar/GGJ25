@@ -66,9 +66,13 @@ public class UIManager: MonoBehaviour
     {
         endGameAnimator.SetTrigger("Hide");
     }
-    
+
+    private bool notifCalled;
     public void ShowNotif()
     {
+        if(notifCalled) return;
+
+        notifCalled = true;
         if (_notifDelay != null)
         {
             Debug.Log("notification show rejected");
@@ -89,6 +93,8 @@ public class UIManager: MonoBehaviour
             StopCoroutine(_notifDelay);
             _notifDelay = null;
         }
+        notifCalled = false;
+
     }
 
     public void ShowCounter()
