@@ -1,3 +1,4 @@
+using System.Xml;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public float deflateRate;
     public float startLungFullness;
     public float riseRate;
-    public float bubbleScale;
+    public float bubbleScaleFactor;
+    public float bubbleStartSize;
 
     [Header("Movement Variables")]
     public float moveSpeed;
@@ -35,12 +37,19 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector2(0, 0);
         currentLungFullness = startLungFullness;
         rb.drag = groundDrag;
+        bubble.transform.localScale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        var dt = Time.deltaTime;
+        var scale = bubble.transform.localScale - Vector3.one * deflateRate * dt;
+        if (scale.x <= bubbleStartSize)
+        {
+            scale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
+        }
+        bubble.transform.localScale = scale;
     }
 
     private void FixedUpdate()
@@ -89,21 +98,19 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
             currentBubbleFullness += blowRate;
             currentLungFullness -= blowRate;
-            if (currentBubbleFullness > 1.0)
+            if (currentBubbleFullness > maxBubbleSize)
             {
                 // TODO: Pop!
                 currentBubbleFullness = 1.0f;
+                bubble.transform.localScale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
             }
             if (currentLungFullness < 0.0f)
             {
                 // todo: Out of breath!
                 currentLungFullness = 0.0f;
             }
-            var scale = Vector3.one * currentBubbleFullness * bubbleScale;
+            var scale = bubble.transform.localScale + Vector3.one * currentBubbleFullness * bubbleScaleFactor;
             bubble.transform.localScale = scale;
-        }
-        else if (context.canceled)
-        {
         }
     }
 }

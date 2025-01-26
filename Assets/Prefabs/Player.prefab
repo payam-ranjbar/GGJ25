@@ -50,12 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bc6ae4fd0fc44cfca5b5149c2688757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBubbleSize: 0
-  blowRate: 0.0001
-  deflateRate: 0
+  maxBubbleSize: 10
+  blowRate: 1.2
+  deflateRate: 2
   startLungFullness: 1.03
-  riseRate: 10
-  bubbleScale: 10
+  riseRate: 15
+  bubbleScaleFactor: 0.2
+  bubbleStartSize: 2
   moveSpeed: 200
   gravity: 10
   moveMultiplier: 0
