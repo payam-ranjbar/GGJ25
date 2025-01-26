@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     private float currentBubbleFullness = 0;
     private float currentLungFullness;
     private bool isGrounded;
+    private bool recentlyHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        var dt = Time.fixedDeltaTime;
+
         if (!isGrounded)
         {
             rb.drag = airDrag;
@@ -63,8 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = groundDrag;
         }
-        moveDirection *= Time.fixedDeltaTime;
-        rb.AddForce(new Vector3(moveDirection.x, 0, moveDirection.y), ForceMode.Impulse);
+        rb.AddForce(moveDirection.x, 0, moveDirection.y);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -72,6 +74,21 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            if (recentlyHit)
+            {
+                recentlyHit = false;
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("Pop"))
+        {
+            // Play SFX for the balloon popping
+            // Play animation of the balloon popping (explode object?)
+            var controller = collider.GetComponentInParent<PlayerController>();
+            controller.recentlyHit = true;
         }
     }
 
@@ -85,15 +102,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            moveDirection = context.ReadValue<Vector2>() * moveSpeed;
-        }
+        moveDirection = context.ReadValue<Vector2>() * moveSpeed;
     }
 
     public void OnBlow(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !recentlyHit)
         {
             rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
             currentBubbleFullness += blowRate;
