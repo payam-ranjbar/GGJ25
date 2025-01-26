@@ -124,6 +124,6 @@ public class PlayerBubble : MonoBehaviour
     {
         this.index = index;
         playerIndex = index;
-        meshRenderer.material = materials[index];
+        meshRenderer.material = materials[index % materials.Length];
     }
 }

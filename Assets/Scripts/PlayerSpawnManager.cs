@@ -6,6 +6,8 @@ public class PlayerSpawnManager : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private float _gameDelayStart = 3.0f;
     [SerializeField] private Lava _lava = null;
+    //[SerializeField] private Vector2 _eventDelayMinMax;
+    [SerializeField] private BirdHazardManager _birdHazard;
 
     public GameObject birdHazard;
 
@@ -13,12 +15,18 @@ public class PlayerSpawnManager : MonoBehaviour
     private int _playerCount = 0;
     private bool _gameStarted = false;
     private bool _gameEnded = false;
+    //private float _time = 0.0f;
 
     private void OnValidate()
     {
         if (_lava == null)
         {
             _lava = FindObjectOfType<Lava>();
+        }
+
+        if (_birdHazard == null)
+        {
+            _birdHazard = FindObjectOfType<BirdHazardManager>();
         }
     }
 
@@ -40,6 +48,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if (_playerCount >= 2 && _gameStarted == false)
         {
+            GetComponent<PlayerInputManager>().DisableJoining();
             _gameStarted = true;
             PlayerEventHandler.Instance.TriggerPlayersJoin();
             // 2 players are joined -> 5 second
@@ -50,6 +59,8 @@ public class PlayerSpawnManager : MonoBehaviour
     private void OnGameBegin()
     {
         _lava.Activate();
+        //_time = Random.Range(_eventDelayMinMax.x, _eventDelayMinMax.y);
+        _birdHazard.started = true;
     }
 
 
@@ -63,6 +74,7 @@ public class PlayerSpawnManager : MonoBehaviour
         _gameEnded = true;
         Debug.Log($"Player died {index}");
         PlayerEventHandler.Instance.TriggerDeath();
+        _birdHazard.started = false;
         if (index == 1)
         {
             GameManager.Instance.PlayerOneWin();
@@ -72,5 +84,14 @@ public class PlayerSpawnManager : MonoBehaviour
             GameManager.Instance.PlayerTwoWin();
         }
     }
+
+    //private void Update()
+    //{
+    //    if (_time <= 0.0f)
+    //    {
+    //        _time = Random.Range(_eventDelayMinMax.x, _eventDelayMinMax.y);
+    //    }
+    //    _time -= Time.deltaTime;
+    //}
 
 }
