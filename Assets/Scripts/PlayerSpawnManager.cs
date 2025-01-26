@@ -33,7 +33,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
         ++_playerCount;
         _index = (_index + 1) % _spawnPoints.Length;
-
+        
         if (_playerCount >= 2 && _gameStarted == false)
         {
             _gameStarted = true;
