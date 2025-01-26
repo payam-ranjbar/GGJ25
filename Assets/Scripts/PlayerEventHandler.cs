@@ -32,6 +32,7 @@ public class PlayerEventHandler : MonoBehaviour
     public event Action OnThunderSpawn;
     public event Action OnStormSpawn;
     public event Action OnPlayersCollide;
+    public event Action OnPlayerJoin;
 
     [SerializeField] private UnityEvent deathEvent;
     [SerializeField] private UnityEvent bubblePopEvent;
@@ -62,4 +63,5 @@ public class PlayerEventHandler : MonoBehaviour
     public void TriggerThunderSpawn() { OnThunderSpawn?.Invoke(); thunderSpawnEvent?.Invoke(); }
     public void TriggerStormSpawn() { OnStormSpawn?.Invoke(); stormSpawnEvent?.Invoke(); }
     public void TriggerPlayersCollide() { OnPlayersCollide?.Invoke(); playersCollideEvent?.Invoke(); }
+    public void TriggerPlayersJoin() { OnPlayerJoin?.Invoke(); }
 }
