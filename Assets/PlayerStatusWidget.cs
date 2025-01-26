@@ -11,7 +11,7 @@ public class PlayerStatusWidget : MonoBehaviour
 
     [SerializeField] private int maxInflationCount = 6;
 
-    [SerializeField] private Slider inflationBar;
+    [SerializeField] public Slider inflationBar;
     
     [SerializeField] private Color positiveColor = Color.green;
     [SerializeField] private Color negativeColor = Color.red;
@@ -26,7 +26,7 @@ public class PlayerStatusWidget : MonoBehaviour
     {
         if(!_tick) return;
         
-        Deflate();
+        //Deflate();
 
         //if (Input.GetKeyDown(KeyCode.Space))
         //{
@@ -43,24 +43,24 @@ public class PlayerStatusWidget : MonoBehaviour
         // var t = Mathf.InverseLerp()
     }
     
-    private void Deflate()
-    {
-        if(_inflating) return;
+    //private void Deflate()
+    //{
+    //    if(_inflating) return;
 
-        var deflateValue = deflationRate * Time.deltaTime;
+    //    var deflateValue = deflationRate * Time.deltaTime;
 
-        if(inflationBar.value > 0)
-            inflationBar.value -= deflateValue;
-    }
+    //    if(inflationBar.value > 0)
+    //        inflationBar.value -= deflateValue;
+    //}
 
-    public void Inflate()
-    {
-        _inflating = true;
+    //public void Inflate()
+    //{
+    //    _inflating = true;
         
-        inflationBar.value += 1f / maxInflationCount;
+    //    inflationBar.value += 1f / maxInflationCount;
 
-        _inflating = false;
-    }
+    //    _inflating = false;
+    //}
     
     
 }

@@ -27,6 +27,8 @@ public class PlayerBubble : MonoBehaviour
 
     private int index;
 
+    private PlayerStatusWidget _widget = null;
+
     public float balloonScale => playingAnim == false ? transform.localScale.x / iniScale.x : 1.0f;
 
     public void OnValidate()
@@ -75,7 +77,6 @@ public class PlayerBubble : MonoBehaviour
         {
             if (player.blow == true)
             {
-                
                 AudioManager.Instance.PlayBreathSound(playerIndex);
                 animCooldown = 0.25f;
                 player.blow = false;
@@ -107,6 +108,8 @@ public class PlayerBubble : MonoBehaviour
                 Pop();
             }
         }
+
+        _widget.inflationBar.value = (balloonScale - 1) / (maxSize - 1);
     }
 
     public void Pop()
@@ -125,5 +128,10 @@ public class PlayerBubble : MonoBehaviour
         this.index = index;
         playerIndex = index;
         meshRenderer.material = materials[index % materials.Length];
+
+        var obj = GameObject.Find($"PlayerStatus{index}");
+        Debug.Assert(obj != null);
+        _widget = obj.GetComponent<PlayerStatusWidget>();
+        Debug.Assert(_widget != null);
     }
 }
