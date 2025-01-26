@@ -1,4 +1,4 @@
-using System.Xml;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,29 +7,28 @@ public class PlayerController : MonoBehaviour
     [Header("Bubble Variables")]
     public float maxBubbleSize;
     public float blowRate;
-    public float deflateRate;
     public float startLungFullness;
     public float riseRate;
     public float bubbleScaleFactor;
     public float bubbleStartSize;
 
     [Header("Movement Variables")]
-    public float moveSpeed;
+    public float airMoveSpeed;
+    public float groundMoveSpeed;
     public float gravity;
-    public float moveMultiplier;
     public float groundDrag;
     public float airDrag;
 
     [Header("References")]
     public Rigidbody rb;
-    public GameObject bubble;
-    public AnimationCurve bubblePower;
+    public PlayerBubble bubble;
 
     // Private state variables
-    private Vector2 moveDirection;
-    private float currentBubbleFullness = 0;
+    public Vector2 moveDirection;
+    public bool blow;
+    //private float currentBubbleFullness = 0;
     private float currentLungFullness;
-    private bool isGrounded;
+    public bool isGrounded;
     private bool recentlyHit = false;
 
     // Start is called before the first frame update
@@ -38,19 +37,12 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector2(0, 0);
         currentLungFullness = startLungFullness;
         rb.drag = groundDrag;
-        bubble.transform.localScale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
     }
 
     // Update is called once per frame
     void Update()
     {
         var dt = Time.deltaTime;
-        var scale = bubble.transform.localScale - Vector3.one * deflateRate * dt;
-        if (scale.x <= bubbleStartSize)
-        {
-            scale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
-        }
-        bubble.transform.localScale = scale;
     }
 
     private void FixedUpdate()
@@ -66,7 +58,33 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = groundDrag;
         }
-        rb.AddForce(moveDirection.x, 0, moveDirection.y);
+        var force = new Vector3(moveDirection.x, 0, moveDirection.y);
+        if (!isGrounded)
+        {
+            force *= airMoveSpeed;
+        }
+        else
+        {
+            force *= groundMoveSpeed;
+        }
+        rb.AddForce(force);
+
+        if (blow == true && bubble.poped == false)
+        {
+            rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
+            blow = false;
+            //velocity.y += riseRate * dt;
+        }
+        //if (isGrounded == false)
+        //{
+        //    velocity.y -= gravity * dt;
+        //}
+        //rb.velocity = velocity;
+        //var t = (bubble.balloonScale - 1) / (bubble.maxSize - 1);
+        //var targetY = Mathf.Lerp(0.0f, 5.0f, t);
+        //var velocity = rb.velocity;
+        //velocity.y = (targetY - rb.position.y) / dt;
+        //rb.velocity = velocity;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -102,29 +120,24 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveDirection = context.ReadValue<Vector2>() * moveSpeed;
+        moveDirection = context.ReadValue<Vector2>();
     }
 
     public void OnBlow(InputAction.CallbackContext context)
     {
         if (context.performed && !recentlyHit)
         {
-            rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
-            currentBubbleFullness += blowRate;
+            blow = true;
             currentLungFullness -= blowRate;
-            if (currentBubbleFullness > maxBubbleSize)
-            {
-                // TODO: Pop!
-                currentBubbleFullness = 1.0f;
-                bubble.transform.localScale = new Vector3(bubbleStartSize, bubbleStartSize, bubbleStartSize);
-            }
             if (currentLungFullness < 0.0f)
             {
                 // todo: Out of breath!
                 currentLungFullness = 0.0f;
             }
-            var scale = bubble.transform.localScale + Vector3.one * currentBubbleFullness * bubbleScaleFactor;
-            bubble.transform.localScale = scale;
+        }
+        else if (context.canceled)
+        {
+            blow = false;
         }
     }
 }

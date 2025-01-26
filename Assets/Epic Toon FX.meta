@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Epic Toon FX.meta
 guid: c356396e14d12c74b9ab2e57a81e3734
+========
+guid: 0694435e5baa7442780143fbec695b36
+>>>>>>>> 963f53e510640746b232fd0d29fdd33b16afb2ce:Assets/Samples.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
