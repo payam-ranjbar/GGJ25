@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
     {
         return i <= 1 ? playerOneCamTarget : playerTwoCamTarget;
     }
+
     public void PlayerOneWin()
     {
         GameOver("Player One");

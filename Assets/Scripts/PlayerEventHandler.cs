@@ -19,6 +19,7 @@ public class PlayerEventHandler : MonoBehaviour
     }
 
     public event Action OnDeath;
+    public event Action OnGameStart;
     public event Action OnBubblePop;
     public event Action OnBirdCollide;
     public event Action OnThunderCollide;
@@ -64,4 +65,5 @@ public class PlayerEventHandler : MonoBehaviour
     public void TriggerStormSpawn() { OnStormSpawn?.Invoke(); stormSpawnEvent?.Invoke(); }
     public void TriggerPlayersCollide() { OnPlayersCollide?.Invoke(); playersCollideEvent?.Invoke(); }
     public void TriggerPlayersJoin() { OnPlayerJoin?.Invoke(); }
+    public void TriggerGameStart() { OnGameStart?.Invoke(); }
 }

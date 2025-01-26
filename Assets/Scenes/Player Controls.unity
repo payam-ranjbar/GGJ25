@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18120563, g: 0.22680153, b: 0.30733734, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -829,7 +830,6 @@ Terrain:
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
-  m_HeightmapMinimumLODSimplification: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -1131,6 +1131,7 @@ GameObject:
   - component: {fileID: 477948814}
   - component: {fileID: 477948813}
   - component: {fileID: 477948812}
+  - component: {fileID: 477948815}
   m_Layer: 0
   m_Name: -------------Managers--------
   m_TagString: Untagged
@@ -1223,6 +1224,60 @@ Transform:
   - {fileID: 449753373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &477948815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477948811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced79effbd26434982044c01ccdd34e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  bubblePopEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  birdCollideEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  thunderCollideEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stormCollideEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playerBlowEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playerLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  bubbleReachMaxEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  bubbleDeflateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  notificationEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  birdsSpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  thunderSpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  stormSpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  playersCollideEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &532023893
 PrefabInstance:
   m_ObjectHideFlags: 0
