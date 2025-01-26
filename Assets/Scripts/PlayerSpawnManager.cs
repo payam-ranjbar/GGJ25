@@ -9,6 +9,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
     private int _index = 0;
     private int _playerCount = 0;
+    private bool _gameStarted = false;
 
     private void OnValidate()
     {
@@ -27,17 +28,29 @@ public class PlayerSpawnManager : MonoBehaviour
 
         var playerController = player.GetComponentInChildren<PlayerController>();
         playerController.SetIndex(_playerCount);
+        //var cameraTarget = GameManager.Instance.GetPlayerCameraTarget(_playerCount);
+        //cameraTarget.transform.parent = playerController.transform;
 
         ++_playerCount;
         _index = (_index + 1) % _spawnPoints.Length;
-
-        // 2 players are joined -> 5 second
-        Invoke("OnGameBegin", _gameDelayStart);
+        
+        if (_playerCount >= 2 && _gameStarted == false)
+        {
+            _gameStarted = true;
+            PlayerEventHandler.Instance.TriggerPlayersJoin();
+            // 2 players are joined -> 5 second
+            Invoke("OnGameBegin", _gameDelayStart);
+        }
     }
 
     private void OnGameBegin()
     {
         _lava.Activate();
+    }
+
+    public void OnPlayerDeath(int index)
+    {
+        Debug.Log($"Player died {index}");
     }
 
 }

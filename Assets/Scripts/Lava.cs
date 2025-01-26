@@ -48,9 +48,10 @@ public class Lava : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider )
+        var player = collider.GetComponentInParent<PlayerController>();
+        if (player != null)
         {
-
+            _spawnManager.OnPlayerDeath(player.index);
         }
     }
 }

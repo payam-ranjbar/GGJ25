@@ -91,24 +91,23 @@ public class AudioManager : MonoBehaviour
 
         private void OnEnable()
         {
-                PlayerEventHandler.Instance.OnDeath += PlayDeath;
-                PlayerEventHandler.Instance.OnPlayerJoin += PlayDing;
-                PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
         }
 
-        private void OnDisable()
-        {
-                PlayerEventHandler.Instance.OnDeath -= PlayDeath;
-                PlayerEventHandler.Instance.OnPlayerJoin -= PlayDing;
-                PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
-
-
-        }
+        //private void OnDisable()
+        //{
+        //    PlayerEventHandler.Instance.OnDeath -= PlayDeath;
+        //    PlayerEventHandler.Instance.OnPlayerJoin -= PlayDing;
+        //    PlayerEventHandler.Instance.OnBirdsSpawn -= PlayBirdsSpawn;
+        //}
 
         private void Start()
         {
                 PlayAmbient();
                 // PlayBGMSequentially();
+                PlayerEventHandler.Instance.OnDeath += PlayDeath;
+                PlayerEventHandler.Instance.OnPlayerJoin += PlayDing;
+                PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
+
         }
 
         public void PlayBirdsSpawn()

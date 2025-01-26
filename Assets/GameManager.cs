@@ -30,16 +30,16 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerEventHandler.Instance.OnPlayerJoin += AddPlayer;
     }
 
-    private void OnDisable()
-    {
-        PlayerEventHandler.Instance.OnPlayerJoin -= AddPlayer;
-    }
+    //private void OnDisable()
+    //{
+    //    PlayerEventHandler.Instance.OnPlayerJoin -= AddPlayer;
+    //}
 
     private void Start()
     {
+        PlayerEventHandler.Instance.OnPlayerJoin += AddPlayer;
         UIManager.Instance.ShowStartScreen();
     }
 
@@ -84,11 +84,11 @@ public class GameManager : MonoBehaviour
 
     public void AddPlayer()
     {
-        _activePlayers++;
+        //_activePlayers++;
 
         UIManager.Instance.HideStartScreen();
         
-        if (_activePlayers >= 2)
+        //if (_activePlayers >= 2)
         {
             StartTimerToStartTheGame();
         }
