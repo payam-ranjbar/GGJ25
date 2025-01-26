@@ -40,8 +40,9 @@ public class PlayerSpawnManager : MonoBehaviour
 
         var playerController = player.GetComponentInChildren<PlayerController>();
         playerController.SetIndex(_playerCount);
-        //var cameraTarget = GameManager.Instance.GetPlayerCameraTarget(_playerCount);
-        //cameraTarget.transform.parent = playerController.transform;
+        var cameraTarget = GameManager.Instance.GetPlayerCameraTarget(_playerCount);
+        if(cameraTarget != null)
+            cameraTarget.transform.parent = playerController.transform;
 
         ++_playerCount;
         _index = (_index + 1) % _spawnPoints.Length;
