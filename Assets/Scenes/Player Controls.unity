@@ -4592,11 +4592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7033755680930025409, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
       propertyPath: maxWaveTime
-      value: 20
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7033755680930025409, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
       propertyPath: minWaveTime
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7992787810910255991, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
       propertyPath: m_Name
