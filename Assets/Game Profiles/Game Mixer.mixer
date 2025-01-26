@@ -16,7 +16,6 @@ AudioMixerGroupController:
   m_Effects:
   - {fileID: 3801445076640073223}
   - {fileID: 1265633400208623079}
-  - {fileID: 5572691034059280646}
   - {fileID: 1421538566534288479}
   m_UserColorIndex: 0
   m_Mute: 0
@@ -47,28 +46,6 @@ AudioMixerEffectController:
   m_EffectName: Attenuation
   m_MixLevel: 4e478074b00712a4d912e0c7a0cce5d0
   m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &-7161021158491010129
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: b744c28dfe602984c99bdf9bb48b971d
-  m_EffectName: Compressor
-  m_MixLevel: 0656538ee2a33d647ad189030c2d1915
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: b98550e43d89ad54bb3d32706a4b0aae
-  - m_ParameterName: Attack
-    m_GUID: 3b2752e5961cab543bd374a7fdb9bd47
-  - m_ParameterName: Release
-    m_GUID: 3b5a8e97bd3baf64eb32840d0d47b07a
-  - m_ParameterName: Make up gain
-    m_GUID: 27ffd5997a0187041b15479203596228
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
@@ -167,7 +144,9 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 236f49449d4b1bb40bdef3e0a8147f31
+    name: Music
   m_AudioMixerGroupViews:
   - guids:
     - 4fbf49aa236ca0d4a9b14ffaab7611a1
@@ -230,18 +209,18 @@ AudioMixerSnapshotController:
   m_FloatValues:
     90701831393cbe44eb42b151dcaff238: -0.0066321753
     916ce3d2fe2f4594ebf8ea7dbe482aa0: -22.6
-    b9a404a3acb1815448efe0664307e7f3: 4.6480923
-    236f49449d4b1bb40bdef3e0a8147f31: -16.534758
+    b9a404a3acb1815448efe0664307e7f3: -1.205277
+    236f49449d4b1bb40bdef3e0a8147f31: -7.279591
     342ebed4c68b3354293a60b6ccdb2e0b: 242
     b98550e43d89ad54bb3d32706a4b0aae: -31.1
     d3d424a55ff6b4c468aa5188aaf3d0d4: 3834
     4ed70c2669bc5e54b9c1eecb82150b7f: 3
     d79a3bd8a22694341bae47b72f55b1d8: 4.259952
-    0c57dcba7a1c7d44e971c0297634b1e5: 0.108804666
+    0c57dcba7a1c7d44e971c0297634b1e5: 3.247614
     5ca2f2faabef547408b42fd3788d25ed: 168
     68ed1c5be93fac44eb869a8ef2a6cb5c: 0.46
     2e3290ab9e85261488deadda4d462b66: 1
-    4628de4ee6b80d94ebd137384c285a4d: 8.451167
+    4628de4ee6b80d94ebd137384c285a4d: -7.7328053
   m_TransitionOverrides: {}
 --- !u!244 &1265633400208623079
 AudioMixerEffectController:
@@ -312,7 +291,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 8052515190270749529}
-  - {fileID: -7161021158491010129}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -350,50 +328,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &4584180513686550247
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: b63b97092c53e694c985fb7ea63c728b
-  m_EffectName: Pitch Shifter
-  m_MixLevel: 00860309e79bc6b43b972724e76c0596
-  m_Parameters:
-  - m_ParameterName: Pitch
-    m_GUID: 2e3290ab9e85261488deadda4d462b66
-  - m_ParameterName: FFT size
-    m_GUID: a787ea2368fb57543839de86b520a485
-  - m_ParameterName: Overlap
-    m_GUID: 0b988e08a9ca888499f40b92878cf928
-  - m_ParameterName: Max channels
-    m_GUID: d41fffa2772534745b297293c327cb0d
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
---- !u!244 &5572691034059280646
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: f463814f8dd6b20448846369f66d5134
-  m_EffectName: Compressor
-  m_MixLevel: 9d619d8a498e5b345942fe9e6a4fc5d2
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: 916ce3d2fe2f4594ebf8ea7dbe482aa0
-  - m_ParameterName: Attack
-    m_GUID: 5ca2f2faabef547408b42fd3788d25ed
-  - m_ParameterName: Release
-    m_GUID: 342ebed4c68b3354293a60b6ccdb2e0b
-  - m_ParameterName: Make up gain
-    m_GUID: 4ed70c2669bc5e54b9c1eecb82150b7f
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 1
 --- !u!244 &8052515190270749529
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -423,7 +357,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -7167441323498786847}
-  - {fileID: 4584180513686550247}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

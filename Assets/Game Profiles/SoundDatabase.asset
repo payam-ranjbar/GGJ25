@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a104eef5329420e9babffc162b1fdfc, type: 3}
   m_Name: SoundDatabase
   m_EditorClassIdentifier: 
-  defaultClip: {fileID: 8300000, guid: 3472e42ddb75fdd459ace407f85b6f3c, type: 3}
+  defaultClip: {fileID: 8300000, guid: 00c5fc810864f0a48b2ae1531b8a2e88, type: 3}
   sounds:
   - name: blow
     clips:
