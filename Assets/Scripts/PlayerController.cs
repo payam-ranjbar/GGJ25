@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        var dt = Time.fixedDeltaTime;
+
         if (!isGrounded)
         {
             rb.drag = airDrag;
@@ -63,8 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = groundDrag;
         }
-        moveDirection *= Time.fixedDeltaTime;
-        rb.AddForce(new Vector3(moveDirection.x, 0, moveDirection.y), ForceMode.Impulse);
+        rb.AddForce(moveDirection.x, 0, moveDirection.y);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -73,6 +74,11 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = true;
         }
+        if (collision.gameObject.CompareTag("Pop"))
+        {
+
+        }
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -85,10 +91,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            moveDirection = context.ReadValue<Vector2>() * moveSpeed;
-        }
+        moveDirection = context.ReadValue<Vector2>() * moveSpeed;
     }
 
     public void OnBlow(InputAction.CallbackContext context)
