@@ -73,6 +73,8 @@ public class UIManager: MonoBehaviour
         if(notifCalled) return;
 
         notifCalled = true;
+        
+        AudioManager.Instance.PlayBirdsSpawn();
         if (_notifDelay != null)
         {
             Debug.Log("notification show rejected");
