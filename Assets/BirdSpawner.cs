@@ -29,7 +29,7 @@ public class BirdSpawner : MonoBehaviour
 
     private bool birdsFlying = false;
     private float currentTime = 0.0f;
-    private List<GameObject> birds;
+    private List<GameObject> birds = new List<GameObject>();
     private bool audioPlayed = false;
 
 

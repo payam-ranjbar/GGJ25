@@ -6002,7 +6002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 2
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -6079,7 +6079,6 @@ MonoBehaviour:
   - {fileID: 1098389619}
   _gameDelayStart: 10
   _lava: {fileID: 734963097}
-  _eventDelayMinMax: {x: 20, y: 30}
   _birdHazard: {fileID: 781105077}
   birdHazard: {fileID: 0}
 --- !u!1001 &1788498515
