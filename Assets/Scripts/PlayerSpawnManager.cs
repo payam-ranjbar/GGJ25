@@ -40,4 +40,9 @@ public class PlayerSpawnManager : MonoBehaviour
         _lava.Activate();
     }
 
+    public void OnPlayerDeath(int index)
+    {
+        Debug.Log($"Player died {index}");
+    }
+
 }
