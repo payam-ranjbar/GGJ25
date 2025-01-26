@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerEventHandler.Instance.OnPlayerJoin += AddPlayer;
     }
 
     private void OnDisable()
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerEventHandler.Instance.OnPlayerJoin += AddPlayer;
         UIManager.Instance.ShowStartScreen();
     }
 
