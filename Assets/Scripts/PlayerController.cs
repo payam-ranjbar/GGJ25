@@ -60,16 +60,22 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = groundDrag;
         }
-        var force = new Vector3(moveDirection.x, 0, moveDirection.y);
-        if (!isGrounded)
+
         {
-            force *= airMoveSpeed;
+            var force = new Vector3(moveDirection.x, 0, moveDirection.y);
+            if (force.sqrMagnitude > 0.0f)
+            {
+                if (!isGrounded)
+                {
+                    force *= airMoveSpeed;
+                }
+                else
+                {
+                    force *= groundMoveSpeed;
+                }
+                rb.AddForce(force);
+            }
         }
-        else
-        {
-            force *= groundMoveSpeed;
-        }
-        rb.AddForce(force);
 
         if (bubble.poped == false)
         {
