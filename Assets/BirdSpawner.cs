@@ -77,13 +77,17 @@ public class BirdSpawner : MonoBehaviour
             currentTime += Time.deltaTime;
             if (currentTime >= deletionTime)
             {
-                foreach (var bird in birds)
+                if (birds != null)
                 {
-                    GameObject.Destroy(bird);
+                    foreach (var bird in birds)
+                    {
+                        GameObject.Destroy(bird);
+                    }
+
+                    birds.Clear();
+                    currentTime = 0.0f;
+                    birdsFlying = false;
                 }
-                birds.Clear();
-                currentTime = 0.0f;
-                birdsFlying = false;
             }
         }
     }
