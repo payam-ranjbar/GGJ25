@@ -15,6 +15,9 @@ public class PlayerBubble : MonoBehaviour
     private Vector3 iniPos = Vector3.zero;
     private Vector3 targetScale = Vector3.zero;
 
+    public Material[] materials;
+    public MeshRenderer meshRenderer;
+
     public bool popped = false;
 
     public float balloonScale => playingAnim == false ? transform.localScale.x / iniScale.x : 1.0f;
@@ -24,6 +27,11 @@ public class PlayerBubble : MonoBehaviour
         if (player == null)
         {
             player = GetComponentInParent<PlayerController>();
+        }
+
+        if (meshRenderer == null)
+        {
+            meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
     }
 
@@ -93,5 +101,10 @@ public class PlayerBubble : MonoBehaviour
         popped = true;
         targetScale = iniScale;
         transform.localScale = Vector3.zero;
+    }
+
+    public void SetMaterial(int index)
+    {
+        meshRenderer.material = materials[index];
     }
 }
