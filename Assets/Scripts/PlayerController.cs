@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     public Rigidbody rb;
     public PlayerBubble bubble;
+    public GameObject[] hats;
 
     [Header("Collisions")]
     public float invincibilityTime;
@@ -180,5 +181,9 @@ public class PlayerController : MonoBehaviour
     {
         this.index = index;
         bubble.SetMaterial(index);
+        for (int i = 0; i < hats.Length; ++i)
+        {
+            hats[i].SetActive((i == index));
+        }
     }
 }
