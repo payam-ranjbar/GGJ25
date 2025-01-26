@@ -222,7 +222,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000047522312, y: -0.003403323, z: -0.0013963409, w: 0.99999326}
   m_LocalPosition: {x: -0, y: 0.35, z: 0.04}
-  m_LocalScale: {x: 1.14, y: 0.43541667, z: 0.7916666}
+  m_LocalScale: {x: 2.2585244, y: 0.86263084, z: 1.5684197}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7332696597464165380}
@@ -279,7 +279,8 @@ Transform:
   m_LocalPosition: {x: -0.00007, y: -0.00154, z: 0.00006}
   m_LocalScale: {x: 0.005, y: 0.005, z: 0.005}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 448300235970936693}
   m_Father: {fileID: 155603299931812758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7821402419628650545
@@ -349,7 +350,8 @@ MonoBehaviour:
   maxSize: 10
   groundLoopDuration: 2
   player: {fileID: 1479495264403465465}
-  poped: 0
+  iniScale: {x: 0, y: 0, z: 0}
+  popped: 0
 --- !u!1 &3993798855038710152
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +364,7 @@ GameObject:
   - component: {fileID: 2551351366134048395}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,7 +379,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.938, z: 0}
-  m_LocalScale: {x: 0.39, y: 0.28, z: 0.24}
+  m_LocalScale: {x: 0.78752697, y: 0.410312, z: 0.5703079}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6362241596258952820}
@@ -663,6 +665,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 930417528886013236, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -726,10 +732,6 @@ PrefabInstance:
     - target: {fileID: 9058748949814621766, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
       propertyPath: m_Layer
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: c70789249c662de4f8727cfc3a84d55f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

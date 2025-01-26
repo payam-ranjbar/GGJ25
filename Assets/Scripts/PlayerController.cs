@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     //private float currentBubbleFullness = 0;
     private float currentLungFullness;
     public bool isGrounded;
-    private bool recentlyHit = false;
+    public bool recentlyHit = false;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         rb.AddForce(force);
 
-        if (blow == true && bubble.poped == false)
+        if (blow == true && bubble.popped == false)
         {
             rb.AddForce(Vector3.up * riseRate, ForceMode.Impulse);
             blow = false;
@@ -105,8 +105,10 @@ public class PlayerController : MonoBehaviour
         {
             // Play SFX for the balloon popping
             // Play animation of the balloon popping (explode object?)
+            Debug.Log("Hit by another player or maybe a bird");
             var controller = collider.GetComponentInParent<PlayerController>();
             controller.recentlyHit = true;
+            bubble.Pop();
         }
     }
 

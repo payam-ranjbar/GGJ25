@@ -13,9 +13,9 @@ public class PlayerBubble : MonoBehaviour
     private Vector3 iniPos = Vector3.zero;
     private Vector3 targetScale = Vector3.zero;
 
-    public bool poped = false;
+    public bool popped = false;
 
-    public float balloonScale => transform.localScale.x / iniScale.x; 
+    public float balloonScale => transform.localScale.x / iniScale.x;
 
     public void OnValidate()
     {
@@ -41,12 +41,12 @@ public class PlayerBubble : MonoBehaviour
         var deltaTime = Time.deltaTime;
         if (player.isGrounded == true)
         {
-            poped = false;
+            popped = false;
             groundTime += deltaTime;
             float t = Mathf.PingPong(groundTime / groundLoopDuration, 1.0f);
             targetScale = Vector3.Lerp(iniScale, iniScale * 2.0f, t);
         }
-        else if (poped == false)
+        else if (popped == false)
         {
             if (player.blow == true)
             {
@@ -58,7 +58,7 @@ public class PlayerBubble : MonoBehaviour
             }
         }
 
-        if (poped == false)
+        if (popped == false)
         {
             transform.localScale = Vector3.MoveTowards(transform.localScale, targetScale, 0.25f * deltaTime);
             transform.localPosition = iniPos + transform.forward * (iniScale.x - transform.localScale.x) * 0.5f;
@@ -72,7 +72,7 @@ public class PlayerBubble : MonoBehaviour
 
     public void Pop()
     {
-        poped = true;
+        popped = true;
         transform.localScale = Vector3.zero;
     }
 }
