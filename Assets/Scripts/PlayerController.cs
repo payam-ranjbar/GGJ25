@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -25,8 +19,6 @@ public class PlayerController : MonoBehaviour
     public float airDrag;
 
     [Header("References")]
-    public InputAction moveAction;
-    public InputAction blowAction;
     public Rigidbody rb;
     public GameObject bubble;
     public AnimationCurve bubblePower;
@@ -37,24 +29,10 @@ public class PlayerController : MonoBehaviour
     private float currentLungFullness;
     private bool isGrounded;
 
-    private void OnEnable()
-    {
-        moveAction.Enable();
-        blowAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        moveAction.Disable();
-        blowAction.Disable();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
         moveDirection = new Vector2(0, 0);
-        moveAction.performed += Move;
-        blowAction.performed += Blow;
         currentLungFullness = startLungFullness;
         rb.drag = groundDrag;
     }
@@ -62,6 +40,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
 
     private void FixedUpdate()
@@ -71,7 +50,10 @@ public class PlayerController : MonoBehaviour
             rb.drag = airDrag;
             rb.AddForce(Vector3.down * gravity);
         }
-        rb.drag = groundDrag;
+        else
+        {
+            rb.drag = groundDrag;
+        }
         moveDirection *= Time.fixedDeltaTime;
         rb.AddForce(new Vector3(moveDirection.x, 0, moveDirection.y), ForceMode.Impulse);
     }
@@ -92,15 +74,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Move(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            moveDirection = moveAction.ReadValue<Vector2>() * moveSpeed;
+            moveDirection = context.ReadValue<Vector2>() * moveSpeed;
         }
     }
 
-    private void Blow(InputAction.CallbackContext context)
+    public void OnBlow(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
