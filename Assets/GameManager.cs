@@ -28,6 +28,22 @@ public class GameManager : MonoBehaviour
     }
 
 
+    public void ShowThunderNotification()
+    {
+        AudioManager.Instance.PlayNarratorThunder();
+        UIManager.Instance.ShowNotif();
+    }
+    public void ShowStormNotification()
+    {
+        AudioManager.Instance.PlayNarratorStorm();
+        UIManager.Instance.ShowNotif();
+    }
+    public void ShowBirdsNotification()
+    {
+        AudioManager.Instance.PlayNarratorBirds();
+        UIManager.Instance.ShowNotif();
+    }
+
     private void GameOver(string playerName)
     {
         AudioManager.Instance.PlayGameEnd();

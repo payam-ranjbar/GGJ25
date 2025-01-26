@@ -313,15 +313,15 @@ public class AudioManager : MonoBehaviour
                         }
                         if (GUILayout.Button("Play Birds Narrator"))
                         {
-                                PlayNarratorBirds();
+                                GameManager.Instance.ShowBirdsNotification();
                         }
                         if (GUILayout.Button("Play Thunder Narrator"))
                         {
-                                PlayNarratorThunder();
+                                GameManager.Instance.ShowThunderNotification();
                         }
                         if (GUILayout.Button("Play Storm Narrator"))
                         {
-                                PlayNarratorStorm();
+                                GameManager.Instance.ShowStormNotification();
                         }                      
                         
                         if (GUILayout.Button("Player one wins"))

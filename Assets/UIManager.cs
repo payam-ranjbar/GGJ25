@@ -65,6 +65,7 @@ public class UIManager: MonoBehaviour
         if (_notifDelay != null)
         {
             Debug.Log("notification show rejected");
+            HideNotif();
             return;
         }
         AudioManager.Instance.PlayNotifDing();
@@ -76,6 +77,11 @@ public class UIManager: MonoBehaviour
     public void HideNotif()
     {
         notifAnimtor.SetTrigger("Hide");
+        if (_notifDelay != null)
+        {
+            StopCoroutine(_notifDelay);
+            _notifDelay = null;
+        }
     }
 
 
