@@ -10,6 +10,7 @@ public class PlayerSpawnManager : MonoBehaviour
     private int _index = 0;
     private int _playerCount = 0;
     private bool _gameStarted = false;
+    private bool _gameEnded = false;
 
     private void OnValidate()
     {
@@ -50,7 +51,21 @@ public class PlayerSpawnManager : MonoBehaviour
 
     public void OnPlayerDeath(int index)
     {
+        if (_gameEnded == true)
+        {
+            return;
+        }
+        _gameEnded = true;
         Debug.Log($"Player died {index}");
+        PlayerEventHandler.Instance.TriggerDeath();
+        if (index == 1)
+        {
+            GameManager.Instance.PlayerOneWin();
+        }
+        else
+        {
+            GameManager.Instance.PlayerTwoWin();
+        }
     }
 
 }
