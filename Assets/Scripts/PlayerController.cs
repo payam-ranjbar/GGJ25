@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     public int index = -1;
 
+    private bool isAlive = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -156,11 +158,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if (isAlive == false)
+        {
+            return;
+        }
         moveDirection = context.ReadValue<Vector2>();
     }
 
     public void OnBlow(InputAction.CallbackContext context)
     {
+        if (isAlive == false)
+        {
+            return;
+        }
         if (context.performed && !recentlyHit)
         {
             blow = true;
@@ -185,5 +195,11 @@ public class PlayerController : MonoBehaviour
         {
             hats[i].SetActive((i == index));
         }
+    }
+
+    public void Die()
+    {
+        isAlive = false;
+        gameObject.SetActive(false);
     }
 }

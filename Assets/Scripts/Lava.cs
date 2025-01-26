@@ -51,6 +51,7 @@ public class Lava : MonoBehaviour
         var player = collider.GetComponentInParent<PlayerController>();
         if (player != null)
         {
+            player.Die();
             _spawnManager.OnPlayerDeath(player.index);
         }
     }
