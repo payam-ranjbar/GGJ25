@@ -48,6 +48,7 @@ public class PlayerSpawnManager : MonoBehaviour
 
         if (_playerCount >= 2 && _gameStarted == false)
         {
+            GetComponent<PlayerInputManager>().DisableJoining();
             _gameStarted = true;
             PlayerEventHandler.Instance.TriggerPlayersJoin();
             // 2 players are joined -> 5 second
@@ -73,6 +74,7 @@ public class PlayerSpawnManager : MonoBehaviour
         _gameEnded = true;
         Debug.Log($"Player died {index}");
         PlayerEventHandler.Instance.TriggerDeath();
+        _birdHazard.started = false;
         if (index == 1)
         {
             GameManager.Instance.PlayerOneWin();
