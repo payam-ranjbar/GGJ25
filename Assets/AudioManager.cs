@@ -304,7 +304,7 @@ public class AudioManager : MonoBehaviour
                 audioMixer.SetFloat(musicGroup, targetVolume);
                 isFading = false;
         }
-
+    /*
         
         private void OnGUI()
         { 
@@ -378,6 +378,7 @@ public class AudioManager : MonoBehaviour
                 
                 GUILayout.EndVertical();
         }
+    */
         
         public void PlayBGMSequentially()
         {
