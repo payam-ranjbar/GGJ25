@@ -64,9 +64,15 @@ public class PlayerAniamtion : MonoBehaviour
         if (hSpeed > 1e-3f)
         {
             var velDir = hSpeed > 0 ? hVel / hSpeed : Vector3.zero;
+            var dot = Vector3.Dot(velDir, _visuals.forward);
+            var newLookDir = -Vector3.forward;
+            if (dot > -0.25f)
+            {
+                newLookDir = velDir;
+            }
             _visuals.rotation = Quaternion.RotateTowards(
                 _visuals.rotation, 
-                Quaternion.LookRotation(velDir), 
+                Quaternion.LookRotation(newLookDir), 
                 deltaTime * _rotationSpeed
             );
         }
