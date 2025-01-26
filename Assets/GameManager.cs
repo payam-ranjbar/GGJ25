@@ -4,6 +4,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    [SerializeField] private GameObject playerOneCamTarget;
+    [SerializeField] private GameObject playerTwoCamTarget;
+    
+    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -15,6 +19,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
+    }
+    public GameObject GetPlayerCameraTarget(int i)
+    {
+        return i <= 1 ? playerOneCamTarget : playerTwoCamTarget;
     }
     public void PlayerOneWin()
     {
