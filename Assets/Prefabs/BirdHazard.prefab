@@ -181,6 +181,8 @@ MonoBehaviour:
   spawners:
   - {fileID: 8454810217944546477}
   - {fileID: 2125051870594761357}
-  spawnBirds: 0
   minSpeed: 10
   maxSpeed: 20
+  minWaveTime: 5
+  maxWaveTime: 8
+  started: 0

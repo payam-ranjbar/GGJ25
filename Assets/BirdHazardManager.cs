@@ -8,9 +8,14 @@ public class BirdHazardManager : MonoBehaviour
     public BirdSpawner[] spawners;
 
     [Header("Variables")]
-    public bool spawnBirds = false;
     public float minSpeed;
     public float maxSpeed;
+    public float minWaveTime;
+    public float maxWaveTime;
+    public bool started = false;
+
+    private float currentTime = 0.0f;
+    private float timeExpiresTime;
 
     // Start is called before the first frame update
     void Start()
@@ -20,17 +25,24 @@ public class BirdHazardManager : MonoBehaviour
             spawner.minSpeed = minSpeed;
             spawner.maxSpeed = maxSpeed;
         }
+
+        timeExpiresTime = Random.Range(minWaveTime, maxWaveTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spawnBirds)
+        if (started)
         {
-            spawnBirds = false;
-            foreach (var spawner in spawners)
+            currentTime += Time.deltaTime;
+            if (currentTime >= timeExpiresTime)
             {
-                spawner.startEvent = true;
+                timeExpiresTime = Random.Range(minWaveTime, maxWaveTime);
+                currentTime = 0.0f;
+                foreach (var spawner in spawners)
+                {
+                    spawner.startEvent = true;
+                }
             }
         }
     }

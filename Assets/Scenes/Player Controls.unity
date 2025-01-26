@@ -247,7 +247,6 @@ Transform:
   m_Children:
   - {fileID: 846630826}
   - {fileID: 704052855}
-  - {fileID: 546555970}
   - {fileID: 647038651}
   - {fileID: 602349455}
   - {fileID: 1969194620}
@@ -259,16 +258,13 @@ Transform:
   - {fileID: 572498978}
   - {fileID: 1617305925}
   - {fileID: 676652614}
-  - {fileID: 781669884}
   - {fileID: 157907532}
   - {fileID: 905949348}
-  - {fileID: 1310264224}
   - {fileID: 317110267}
   - {fileID: 1734049314}
   - {fileID: 1114058577}
-  - {fileID: 760098229}
-  - {fileID: 2120316206}
   - {fileID: 344359396}
+  - {fileID: 840981200}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127494022
@@ -833,6 +829,7 @@ Terrain:
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
+  m_HeightmapMinimumLODSimplification: 0
   m_HeightmapMaximumLOD: 0
   m_ShadowCastingMode: 2
   m_DrawHeightmap: 1
@@ -1223,7 +1220,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1960458350}
-  - {fileID: 2092756760}
   - {fileID: 449753373}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2481,6 +2477,11 @@ PrefabInstance:
       addedObject: {fileID: 1334482027}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b4fc0b00f30d37489edf02a77cda524, type: 3}
+--- !u!4 &840981200 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4bfc4e92ee9ef014fa31a13d9d10ea67, type: 3}
+  m_PrefabInstance: {fileID: 1939818923}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &846630825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4455,6 +4456,7 @@ MonoBehaviour:
   - {fileID: 1098389619}
   _gameDelayStart: 3
   _lava: {fileID: 734963097}
+  birdHazard: {fileID: 0}
 --- !u!1001 &1845157320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4587,6 +4589,14 @@ PrefabInstance:
     - target: {fileID: 5461605839251959059, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033755680930025409, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
+      propertyPath: maxWaveTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7033755680930025409, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
+      propertyPath: minWaveTime
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7992787810910255991, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
       propertyPath: m_Name
@@ -5260,7 +5270,6 @@ SceneRoots:
   - {fileID: 1577314977}
   - {fileID: 532023893}
   - {fileID: 1845157320}
-  - {fileID: 1939818923}
   - {fileID: 1357992265}
   - {fileID: 346476171}
   - {fileID: 1026845169}
@@ -5277,4 +5286,6 @@ SceneRoots:
   - {fileID: 1983082853}
   - {fileID: 734963096}
   - {fileID: 7573052569525740853}
-  - {fileID: 305916096}
+  - {fileID: 1923255531}
+  - {fileID: 91885858}
+  - {fileID: 477948814}
