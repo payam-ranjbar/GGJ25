@@ -69,6 +69,7 @@ MonoBehaviour:
   blow: 0
   isGrounded: 0
   recentlyHit: 0
+  index: -1
 --- !u!114 &4003853077433206104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,8 +350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflateRate: 0.005
-  inflateRateT0: 0.8
-  inflateRateT1: 0.25
+  inflateRateT0: 1
+  inflateRateT1: 0.4
   _curve:
     serializedVersion: 2
     m_Curve:
@@ -379,6 +380,11 @@ MonoBehaviour:
   groundLoopDuration: 2
   player: {fileID: 1479495264403465465}
   iniScale: {x: 0, y: 0, z: 0}
+  materials:
+  - {fileID: 2100000, guid: 239a65ef7d0e0ac41b66a845ed022060, type: 2}
+  - {fileID: 2100000, guid: 700d79a1cbf3655438d7dd5da4dd190f, type: 2}
+  - {fileID: 2100000, guid: 43a658ad06815054aa9bcefd87521d97, type: 2}
+  meshRenderer: {fileID: 5849608253781318811}
   popped: 0
 --- !u!1 &3993798855038710152
 GameObject:
@@ -390,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 239774400314038666}
   - component: {fileID: 2551351366134048395}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hitbox
   m_TagString: Hitbox
   m_Icon: {fileID: 0}
