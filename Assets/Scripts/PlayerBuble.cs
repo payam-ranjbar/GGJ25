@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class PlayerBubble : MonoBehaviour
 {
@@ -11,6 +13,7 @@ public class PlayerBubble : MonoBehaviour
 
     public PlayerController player;
 
+
     public Vector3 iniScale = Vector3.zero;
     private Vector3 iniPos = Vector3.zero;
     private Vector3 targetScale = Vector3.zero;
@@ -18,7 +21,11 @@ public class PlayerBubble : MonoBehaviour
     public Material[] materials;
     public MeshRenderer meshRenderer;
 
+    public ParticleSystem[] particles;
+
     public bool popped = false;
+
+    private int index;
 
     public float balloonScale => playingAnim == false ? transform.localScale.x / iniScale.x : 1.0f;
 
@@ -41,6 +48,10 @@ public class PlayerBubble : MonoBehaviour
         iniPos = transform.localPosition;
         iniScale = transform.localScale;
         targetScale = transform.localScale;
+        foreach (var particle in particles)
+        {
+            particle.Stop();
+        }
     }
 
     private float groundTime = 0.0f;
@@ -101,10 +112,12 @@ public class PlayerBubble : MonoBehaviour
         popped = true;
         targetScale = iniScale;
         transform.localScale = Vector3.zero;
+        particles[player.index].Play();
     }
 
     public void SetMaterial(int index)
     {
+        this.index = index;
         meshRenderer.material = materials[index];
     }
 }
