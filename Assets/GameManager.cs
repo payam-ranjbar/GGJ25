@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using Cinemachine;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,7 +9,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject playerOneCamTarget;
     [SerializeField] private GameObject playerTwoCamTarget;
-    
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+
+    private int _activePlayers;
+
+    private bool _gameStarted;
     
     private void Awake()
     {
@@ -20,6 +27,22 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
     }
+
+    private void OnEnable()
+    {
+        PlayerEventHandler.Instance.OnPlayerJoin += AddPlayer;
+    }
+
+    private void OnDisable()
+    {
+        PlayerEventHandler.Instance.OnPlayerJoin -= AddPlayer;
+    }
+
+    private void Start()
+    {
+        UIManager.Instance.ShowStartScreen();
+    }
+
     public GameObject GetPlayerCameraTarget(int i)
     {
         return i <= 1 ? playerOneCamTarget : playerTwoCamTarget;
@@ -56,5 +79,63 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.PlayGameEnd();
         UIManager.Instance.ShowEndGame(playerName);
+    }
+
+
+    public void AddPlayer()
+    {
+        _activePlayers++;
+
+        UIManager.Instance.HideStartScreen();
+        
+        if (_activePlayers >= 2)
+        {
+            StartTimerToStartTheGame();
+        }
+    }
+
+    private void StartTimerToStartTheGame()
+    {
+        _gameStarted = true;
+
+        StartCoroutine(Counter());
+        
+    }
+
+
+    private bool _counterStarted;
+
+
+    private IEnumerator Counter()
+    {
+        if(_counterStarted) yield break;
+        _counterStarted = true;
+            AudioManager.Instance.PlayCounter();
+        UIManager.Instance.ShowCounter();
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.SetCounter("2");
+
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.SetCounter("1");
+        
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.SetCounter("Go!");
+        yield return new WaitForSeconds(0.5f);
+        UIManager.Instance.HideCounter();
+        _counterStarted = false;
+        
+
+        RiseLava();
+        yield return new WaitForSeconds(0.3f);
+        AudioManager.Instance.PlayDing();
+        UIManager.Instance.ShowPlayerHUD();
+    }
+
+    private void RiseLava()
+    {
+        impulseSource.GenerateImpulse(0.1f);
+        AudioManager.Instance.PlayBGMSequentially();
+        
+        
     }
 }

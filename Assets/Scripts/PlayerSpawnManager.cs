@@ -18,7 +18,7 @@ public class PlayerInputManager : MonoBehaviour
         ++_playerCount;
         _index = (_index + 1) % _spawnPoints.Length;
 
-        // 2 players are joined -> 5 second
+        PlayerEventHandler.Instance.TriggerPlayersJoin();
     }
 
 }

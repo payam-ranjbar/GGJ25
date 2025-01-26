@@ -11,7 +11,10 @@ public class UIManager: MonoBehaviour
     [SerializeField] private Animator endGameAnimator;
     [SerializeField] private Animator notifAnimtor;
     [SerializeField] private TMP_Text endGameText;
+    [SerializeField] private TMP_Text counterText;
+    [SerializeField] private Animator counterAnimator;
 
+    private bool _startScreenOn;
 
     public static UIManager Instance { get; private set; }
 
@@ -41,12 +44,16 @@ public class UIManager: MonoBehaviour
 
     public void HideStartScreen()
     {
+        if(!_startScreenOn) return;
+        _startScreenOn = false;
         startScreenAnimator.SetTrigger("Hide");
     }
 
     public void ShowStartScreen()
     {
+        if(_startScreenOn) return;
         startScreenAnimator.SetTrigger("Show");
+        _startScreenOn = true;
     }
 
 
@@ -82,6 +89,21 @@ public class UIManager: MonoBehaviour
             StopCoroutine(_notifDelay);
             _notifDelay = null;
         }
+    }
+
+    public void ShowCounter()
+    {
+        counterAnimator.SetTrigger("Show");
+    }
+    public void HideCounter()
+    {
+        counterAnimator.SetTrigger("Hide");
+    }    
+    
+    public void SetCounter(string text)
+    {
+        counterText.text = text;
+        counterAnimator.SetTrigger("Wiggle");
     }
 
 

@@ -78,6 +78,9 @@ MonoBehaviour:
   - name: death
     clips:
     - {fileID: 8300000, guid: 2943e2b9316eae24eab6b178b377e90d, type: 3}
+  - name: counter
+    clips:
+    - {fileID: 8300000, guid: 59e14447dcf22cc45bee7bd645d29c99, type: 3}
   bgmList:
   - {fileID: 8300000, guid: c8ab431e137d301479160ac7f31227d6, type: 3}
   - {fileID: 8300000, guid: 5bccdbfcb5b9ee04ba84c5e01804c1b0, type: 3}

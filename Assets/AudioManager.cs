@@ -88,10 +88,32 @@ public class AudioManager : MonoBehaviour
 
         }
 
+
+        private void OnEnable()
+        {
+                PlayerEventHandler.Instance.OnDeath += PlayDeath;
+                PlayerEventHandler.Instance.OnPlayerJoin += PlayDing;
+                PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
+        }
+
+        private void OnDisable()
+        {
+                PlayerEventHandler.Instance.OnDeath -= PlayDeath;
+                PlayerEventHandler.Instance.OnPlayerJoin -= PlayDing;
+                PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
+
+
+        }
+
         private void Start()
         {
                 PlayAmbient();
                 // PlayBGMSequentially();
+        }
+
+        public void PlayBirdsSpawn()
+        {
+                PlaySfx(soundDB.GetRandomClipFromSound("bird spawn"));
         }
 
         public void PlayNotifDing()
@@ -333,6 +355,12 @@ public class AudioManager : MonoBehaviour
                                 GameManager.Instance.PlayerTwoWin();
                         }
 
+                        if (GUILayout.Button("Add player"))
+                        {
+                                PlayDing();
+                                GameManager.Instance.AddPlayer();
+                        }
+                
                 GUILayout.EndVertical();
         }
         
@@ -363,6 +391,13 @@ public class AudioManager : MonoBehaviour
                 }
 
                 yield return PlayBGMCoroutine();
+        }
+
+
+        public void PlayCounter()
+        {
+                var clip = soundDB.GetRandomClipFromSound("counter");
+                PlaySfx(clip);
         }
 
 }
