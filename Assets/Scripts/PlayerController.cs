@@ -1,5 +1,6 @@
 using System.Numerics;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -26,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public PlayerBubble bubble;
 
+    [Header("Collisions")]
+    public float invincibilityTime;
+    public bool invincible = false;
+
     // Private state variables
     public Vector2 moveDirection;
     public bool blow;
@@ -33,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private float currentLungFullness;
     public bool isGrounded;
     public bool recentlyHit = false;
+    private float invincibilityTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +52,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         var dt = Time.deltaTime;
+        if (invincible)
+        {
+            invincibilityTimer += dt;
+            if (invincibilityTimer >= invincibilityTime)
+            {
+                invincible = false;
+                invincibilityTimer = 0.0f;
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -109,14 +124,18 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.CompareTag("Pop"))
+        if (collider.gameObject.CompareTag("Pop") && !invincible)
         {
             // Play SFX for the balloon popping
             // Play animation of the balloon popping (explode object?)
-            Debug.Log("Hit by another player or maybe a bird");
+            Debug.Log("Hit by another player");
             var controller = collider.GetComponentInParent<PlayerController>();
-            controller.recentlyHit = true;
+            if (!controller.isGrounded)
+            {
+                controller.recentlyHit = true;
+            }
             bubble.Pop();
+            invincible = true;
         }
     }
 
@@ -125,6 +144,10 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+            if (recentlyHit)
+            {
+                recentlyHit = false;
+            }
         }
     }
 
