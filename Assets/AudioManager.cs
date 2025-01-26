@@ -75,6 +75,10 @@ public class AudioManager : MonoBehaviour
         private bool isFading = false;
         [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
+        [SerializeField] private PlayerAudioController playerOneAudio;
+        [SerializeField] private PlayerAudioController playerTwoAudio;
+        
+        
         private void Awake()
         {
                 if (Instance != null && Instance != this)
@@ -108,6 +112,11 @@ public class AudioManager : MonoBehaviour
                 PlayerEventHandler.Instance.OnPlayerJoin += PlayDing;
                 PlayerEventHandler.Instance.OnBirdsSpawn += PlayBirdsSpawn;
 
+        }
+
+        public void PlayPop()
+        {
+                PlaySfx(soundDB.GetRandomClipFromSound("pop"));
         }
 
         public void PlayBirdsSpawn()
@@ -153,6 +162,13 @@ public class AudioManager : MonoBehaviour
                 ambientSource.loop = false;
                 ambientSource.clip = soundDB.GetRandomClipFromSound("ambient");
                 ambientSource.Play();
+        }
+
+        public void PlayBreathSound(int playerNo)
+        {
+               var controller = playerNo <= 1 ? playerOneAudio : playerTwoAudio;
+               
+               PlayBreathSound(controller);
         }
         public void PlayBreathSound(PlayerAudioController playerAudio)
         {
