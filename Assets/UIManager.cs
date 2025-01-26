@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager: MonoBehaviour
@@ -6,7 +9,9 @@ public class UIManager: MonoBehaviour
     [SerializeField] private Animator playerHUDAnimator;
     [SerializeField] private Animator startScreenAnimator;
     [SerializeField] private Animator endGameAnimator;
-    [SerializeField] private Text endGameText;
+    [SerializeField] private Animator notifAnimtor;
+    [SerializeField] private TMP_Text endGameText;
+
 
     public static UIManager Instance { get; private set; }
 
@@ -55,4 +60,33 @@ public class UIManager: MonoBehaviour
         endGameAnimator.SetTrigger("Hide");
     }
     
+    public void ShowNotif()
+    {
+        if (_notifDelay != null)
+        {
+            Debug.Log("notification show rejected");
+            return;
+        }
+        AudioManager.Instance.PlayNotifDing();
+        notifAnimtor.SetTrigger("Show");
+        _notifDelay = StartCoroutine(Delay());
+
+
+    }
+    public void HideNotif()
+    {
+        notifAnimtor.SetTrigger("Hide");
+    }
+
+
+    private Coroutine _notifDelay;
+    private IEnumerator Delay()
+    {
+        
+        yield return new WaitForSeconds(2f);
+        HideNotif();
+        _notifDelay = null;
+
+    }
+
 }

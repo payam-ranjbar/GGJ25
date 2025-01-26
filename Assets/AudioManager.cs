@@ -53,6 +53,7 @@ public class AudioManager : MonoBehaviour
         [SerializeField] private AudioSource ambientSource;
         [SerializeField] private AudioSource narratorSource;
         [SerializeField] private AudioSource sfxSource;
+        [SerializeField] private AudioSource uiSource;
         [SerializeField] private SoundDatabase soundDB;
 
         [SerializeField] private float delayBetweenClips = 3f;
@@ -81,6 +82,38 @@ public class AudioManager : MonoBehaviour
                 // PlayBGMSequentially();
         }
 
+        public void PlayNotifDing()
+        {
+                var clip = soundDB.GetRandomClipFromSound("notif");
+                uiSource.PlayOneShot(clip);
+        }
+
+        public void PlayGameEnd()
+        {
+                PlayRandomSFX("end game");
+        }
+
+        public void PlayDeath()
+        {
+                PlayRandomSFX("death");
+        }
+
+        public void PlayDing()
+        {
+                PlayRandomSFX("ding");
+        }
+
+        public void PlayWinPlayerOne()
+        {
+                PlayNarrator("player one win");
+        }
+
+        public void PlayWinPlayerTwo()
+        {
+                PlayNarrator("player two win");
+ 
+        }
+        
         public void PlayAmbient()
         {
                 ambientSource.loop = false;

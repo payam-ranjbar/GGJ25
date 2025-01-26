@@ -59,6 +59,25 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3a1cd94732ca7ad4e9a1bab9ee39e832, type: 3}
     - {fileID: 8300000, guid: 1b606fbff36bbac419551dcd65ca0760, type: 3}
     - {fileID: 8300000, guid: 6c680870cf95d204590e8c58e8264ba9, type: 3}
+  - name: player one win
+    clips:
+    - {fileID: 8300000, guid: fcf80e4385cc1394599133ed16c337f4, type: 3}
+  - name: player two win
+    clips:
+    - {fileID: 8300000, guid: ad2b1c4139266a2489f0c607eb49ba7d, type: 3}
+  - name: notif
+    clips:
+    - {fileID: 8300000, guid: 9b476f67791d93c458993aca06e43673, type: 3}
+  - name: ding
+    clips:
+    - {fileID: 8300000, guid: 2ac45bcc074f8794aa6b7ce4c17f3497, type: 3}
+    - {fileID: 8300000, guid: 00c5fc810864f0a48b2ae1531b8a2e88, type: 3}
+  - name: end game
+    clips:
+    - {fileID: 8300000, guid: c559a3f40dd66ba46a9fcbc377816f05, type: 3}
+  - name: death
+    clips:
+    - {fileID: 8300000, guid: 2943e2b9316eae24eab6b178b377e90d, type: 3}
   bgmList:
   - {fileID: 8300000, guid: c8ab431e137d301479160ac7f31227d6, type: 3}
   - {fileID: 8300000, guid: 5bccdbfcb5b9ee04ba84c5e01804c1b0, type: 3}
