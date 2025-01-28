@@ -52,6 +52,9 @@ public class PlayerSpawnManager : MonoBehaviour
             GetComponent<PlayerInputManager>().DisableJoining();
             _gameStarted = true;
             PlayerEventHandler.Instance.TriggerPlayersJoin();
+            
+            AudioManager.Instance.PlayBGMSequentially();
+
             // 2 players are joined -> 5 second
             Invoke("OnGameBegin", _gameDelayStart);
         }

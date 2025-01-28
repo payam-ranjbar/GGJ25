@@ -416,6 +416,12 @@ public class AudioManager : MonoBehaviour
                 PlaySfx(clip);
         }
 
+        public void PlayLava()
+        {
+                var clip = soundDB.GetRandomClipFromSound("lava");
+                PlaySfx(clip);
+                
+        }
 }
         
         

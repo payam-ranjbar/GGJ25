@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Lava : MonoBehaviour
@@ -5,13 +6,17 @@ public class Lava : MonoBehaviour
     [SerializeField] private Vector2 _minMaxHeight;
     [SerializeField] private float _duration = 10.0f;
     [SerializeField] private PlayerSpawnManager _spawnManager;
-
+    [SerializeField] private GameObject _playerDeathParticle;
+    
     private float _time = 0.0f;
 
     private void Awake()
     {
         enabled = false;
     }
+
+
+    public bool rise;
 
     private void OnValidate()
     {
@@ -31,12 +36,25 @@ public class Lava : MonoBehaviour
 
     public void Activate()
     {
+
+        StartCoroutine(Rise());
         enabled = true;
+        AudioManager.Instance.PlayLava();
+        GameManager.Instance.RiseLava();
         Reset();
+    }
+
+    IEnumerator Rise()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        rise = true;
+        enabled = true;
     }
 
     public void Update()
     {
+        if(!rise) return;
         var dt = Time.deltaTime;
         _time += dt;
         var t = Mathf.PingPong(_time / _duration, 1.0f);
@@ -53,6 +71,10 @@ public class Lava : MonoBehaviour
         {
             player.Die();
             _spawnManager.OnPlayerDeath(player.index);
+            var go = GameObject.Instantiate(_playerDeathParticle, player.GetComponent<Rigidbody>().position, Quaternion.identity, null);
+            var particle = go.GetComponent<ParticleSystem>();
+            particle.Stop();
+            particle.Play();
         }
     }
 }

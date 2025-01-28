@@ -2,6 +2,7 @@
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -132,10 +133,18 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.ShowPlayerHUD();
     }
 
-    private void RiseLava()
+    private void Update()
     {
-        impulseSource.GenerateImpulse(0.1f);
-        AudioManager.Instance.PlayBGMSequentially();
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            SceneManager.LoadScene(0);
+        }
+    }
+
+    public void RiseLava()
+    {
+        impulseSource.GenerateImpulse();
+        // AudioManager.Instance.PlayBGMSequentially();
         
         
     }

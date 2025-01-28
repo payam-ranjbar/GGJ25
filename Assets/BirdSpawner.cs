@@ -1,14 +1,16 @@
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BirdSpawner : MonoBehaviour
 {
     [Header("State Variables")]
-    public int numBirds;
-    public float minSpeed;
+    public float minSpawnInterval =  5;
+    public float maxSpawnInterval = 7;
     public float maxSpeed;
-    public float deletionTime;
+    public float spawnInterval;
     public float timeFromNotificationToBirds;
     public bool startEvent = false;
 
@@ -43,53 +45,34 @@ public class BirdSpawner : MonoBehaviour
     {
         if (startEvent)
         {
-            // If we started another event while the birds are still flying the timers can get messed up
-            // This fixes the issue
-            if (birdsFlying)
+
+            if ((currentTime + timeFromNotificationToBirds >= spawnInterval))
             {
-                birdsFlying = false;
-                currentTime = 0.0f;
-                foreach (var bird in birds)
+                if (!audioPlayed)
                 {
-                    GameObject.Destroy(bird);
+                    if (GameManager.Instance != null)
+                        GameManager.Instance.ShowBirdsNotification();
+                    if (AudioManager.Instance != null)
+                        AudioManager.Instance.PlayBirdsSpawn();
+                    audioPlayed = true;
+                    Debug.Log("bird notif played");
                 }
-                birds.Clear();
             }
-            if (!audioPlayed)
-            {
-                GameManager.Instance.ShowBirdsNotification();
-                audioPlayed = true;
-                currentTime = 0.0f;
-            }
-            currentTime += Time.deltaTime;
-            if (currentTime >= timeFromNotificationToBirds)
+
+            if (currentTime  >= spawnInterval)
             {
                 currentTime = 0.0f;
+                spawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
                 ChooseSpawnLocation();
                 SpawnBirds();
                 birdsFlying = true;
-                startEvent = false;
                 audioPlayed = false;
+                return;
             }
-        }
-        if (birdsFlying)
-        {
             currentTime += Time.deltaTime;
-            if (currentTime >= deletionTime)
-            {
-                if (birds != null)
-                {
-                    foreach (var bird in birds)
-                    {
-                        GameObject.Destroy(bird);
-                    }
 
-                    birds.Clear();
-                    currentTime = 0.0f;
-                    birdsFlying = false;
-                }
-            }
         }
+        
     }
 
     private void ChooseSpawnLocation()
@@ -99,17 +82,40 @@ public class BirdSpawner : MonoBehaviour
         height = Random.Range(minHeight, maxHeight);
     }
 
+    [SerializeField] private FlockManager flock;
     private void SpawnBirds()
     {
-        for (int i = 0; i < numBirds; i++)
-        {
-            Debug.Log("Spawning a bird");
-            Vector3 position = new Vector3(Random.Range(center.x - width / 2, center.y + width / 2), Random.Range(center.y - height / 2, center.y + height / 2), zPlane);
-            var bird = Instantiate(birdReference, position, Quaternion.identity);
-            var birdControls = bird.GetComponent<BirdControls>();
-            birdControls.speed = Random.Range(minSpeed, maxSpeed);
-            birdControls.isFlying = true;
-            birdControls.moveDirection = normal;
-        }
+        // for (int i = 0; i < numBirds; i++)
+        // {
+        //     Debug.Log("Spawning a bird");
+        //     Vector3 position = new Vector3(Random.Range(center.x - width / 2, center.y + width / 2), Random.Range(center.y - height / 2, center.y + height / 2), zPlane);
+        //     var bird = Instantiate(birdReference, position, Quaternion.identity);
+        //     var birdControls = bird.GetComponent<BirdControls>();
+        //     birdControls.speed = Random.Range(minSpeed, maxSpeed);
+        //     birdControls.isFlying = true;
+        //     birdControls.moveDirection = normal;
+        // }
+        //
+        Vector3 position = new Vector3(transform.position.x + width, transform.position.y + height, transform.position.z);
+         var newFlock = Instantiate(flock, position, Quaternion.identity);
+         newFlock.isFlaying = true;
+         newFlock.flyDirection = normal.normalized;
+
+         Destroy(newFlock.gameObject, 10f);
+
+         for (int i = 0; i < newFlock.transform.childCount; i++)
+         {
+             Destroy(newFlock.transform.GetChild(i).gameObject, 9.8f);
+         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, normal.normalized * maxSpeed);
+        Gizmos.DrawWireCube(transform.position, new Vector3(maxWidth, maxHeight, 0));
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(transform.position, new Vector3(width, height, 0));
     }
 }

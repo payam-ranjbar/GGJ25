@@ -22,7 +22,7 @@ public class BirdHazardManager : MonoBehaviour
     {
         foreach (var spawner in spawners)
         {
-            spawner.minSpeed = minSpeed;
+            // spawner.minSpeed = minSpeed;
             spawner.maxSpeed = maxSpeed;
         }
 

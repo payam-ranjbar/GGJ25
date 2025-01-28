@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1849812752733983306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.44, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cffe57f62bb2448eb11afe6c4a66537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numBirds: 20
-  minSpeed: 10
+  minSpawnInterval: 5
+  maxSpawnInterval: 7
   maxSpeed: 30
-  deletionTime: 10
+  spawnInterval: 0
   timeFromNotificationToBirds: 2
   startEvent: 0
   xBounds:
@@ -59,13 +59,14 @@ MonoBehaviour:
   zPlane: 0
   normal: {x: 0, y: 0, z: 1}
   center: {x: 0, y: 0}
-  width: 0
-  height: 0
+  width: 34.37
+  height: 36.57
   minWidth: 1
   maxWidth: 5
   minHeight: 1
   maxHeight: 5
   birdReference: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
+  flock: {fileID: 0}
 --- !u!1 &3409288487450725518
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 3409288487450725518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 17.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -110,10 +111,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cffe57f62bb2448eb11afe6c4a66537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numBirds: 20
-  minSpeed: 10
+  minSpawnInterval: 5
+  maxSpawnInterval: 7
   maxSpeed: 30
-  deletionTime: 10
+  spawnInterval: 0
   timeFromNotificationToBirds: 2
   startEvent: 0
   xBounds:
@@ -124,14 +125,15 @@ MonoBehaviour:
   - 15
   zPlane: 28
   normal: {x: 0, y: 0, z: -1}
-  center: {x: 0, y: 0}
-  width: 0
-  height: 0
+  center: {x: -25.5, y: 0}
+  width: 9.28
+  height: 61.47
   minWidth: 1
   maxWidth: 5
   minHeight: 1
   maxHeight: 5
   birdReference: {fileID: 2013368157593612712, guid: 0ecd5f9093241694894518f8642ede3e, type: 3}
+  flock: {fileID: 0}
 --- !u!1 &7992787810910255991
 GameObject:
   m_ObjectHideFlags: 0

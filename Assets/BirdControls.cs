@@ -11,6 +11,7 @@ public class BirdControls : MonoBehaviour
     {
         moveDirection = moveDirection.normalized;
         transform.rotation = Quaternion.LookRotation(-moveDirection);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + Vector3.forward * Random.Range(-50f, 50f));
     }
 
     void Update()

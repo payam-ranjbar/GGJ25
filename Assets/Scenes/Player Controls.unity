@@ -776,7 +776,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &344359396
 Transform:
   m_ObjectHideFlags: 0
@@ -821,7 +821,7 @@ Terrain:
   m_GameObject: {fileID: 344359395}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 0}
+  m_TerrainData: {fileID: 15600000, guid: 65f499ce85751e5439826e040b6cefdd, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
@@ -2950,7 +2950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 58.45941}
+  m_AnchoredPosition: {x: 0, y: 58.459473}
   m_SizeDelta: {x: 0, y: -857.1805}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &981822722
@@ -4511,6 +4511,7 @@ MonoBehaviour:
   - {fileID: 1098389619}
   _gameDelayStart: 3
   _lava: {fileID: 734963097}
+  _birdHazard: {fileID: 1923255532}
   birdHazard: {fileID: 0}
 --- !u!1001 &1845157320
 PrefabInstance:
@@ -4670,6 +4671,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
+--- !u!114 &1923255532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7033755680930025409, guid: fde759dc59c584a4e8ca84019ff51df9, type: 3}
+  m_PrefabInstance: {fileID: 1923255531}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5c79b5a265a4765ae404beb2511902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1939818923
 PrefabInstance:
   m_ObjectHideFlags: 0
